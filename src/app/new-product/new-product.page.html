@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>newProduct</ion-title>
+    <ion-title>Nuevo Producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form #form="ngForm" (ngSubmit)="onSubmitTemplate()">
+    <ion-item>
+      <ion-label position="stacked">Id</ion-label>
+      <ion-input type="text" name="id" [(ngModel)]="product.id" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Categoria</ion-label>
+      <ion-input type="text" name="categoria" [(ngModel)]="product.categoria" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Material</ion-label>
+      <ion-input type="text" name="material" [(ngModel)]="product.material" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Color</ion-label>
+      <ion-input type="text" name="color" [(ngModel)]="product.color" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Existencia</ion-label>
+      <ion-input type="text" name="existencia" [(ngModel)]="product.existencia" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" name="nombre" [(ngModel)]="product.nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="text" name="precio" [(ngModel)]="product.precio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripcion</ion-label>
+      <ion-input type="text" name="descripcion" [(ngModel)]="product.descripcion" required></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="formulario.invalid">Guardar</ion-button>
+  </form>
 </ion-content>

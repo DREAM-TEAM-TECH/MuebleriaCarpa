@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProductPage implements OnInit {
 
+  product = {
+    id: '',
+    categoria: '',
+    material: '',
+    color: '',
+    existencia: '',
+    nombre: '',
+    precio: '',
+    descripcion: ''
+  }
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmitTemplate(){
+    console.log('Form submit');
+    console.log(this.product);
   }
 
 }
