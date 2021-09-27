@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
+
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-new-product',
@@ -7,25 +15,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProductPage implements OnInit {
 
-  product = {
-    id: '',
-    categoria: '',
-    material: '',
-    color: '',
-    existencia: '',
-    nombre: '',
-    precio: '',
-    descripcion: ''
-  }
+  product = new FormGroup ({
+    id: new FormControl(''),
+    category: new FormControl(''),
+    material: new FormControl(''),
+    color: new FormControl(''),
+    stock: new FormControl(''),
+    name: new FormControl(''),
+    price: new FormControl(''),
+    description: new FormControl(''),
+  });
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmitTemplate(){
+  onSubmit(){
     console.log('Form submit');
-    console.log(this.product);
+    console.log(this.product.value);
   }
 
 }

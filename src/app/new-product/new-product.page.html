@@ -1,43 +1,57 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/folder/inbox"></ion-back-button>
+    </ion-buttons>
     <ion-title>Nuevo Producto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="onSubmitTemplate()">
+  <form [formGroup]="product" (ngSubmit)="onSubmit()">
     <ion-item>
-      <ion-label position="stacked">Id</ion-label>
-      <ion-input type="text" name="id" [(ngModel)]="product.id" required></ion-input>
+      <ion-label position="floating">Id</ion-label>
+      <ion-input formControlName="id"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Categoria</ion-label>
-      <ion-input type="text" name="categoria" [(ngModel)]="product.categoria" required></ion-input>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Material</ion-label>
-      <ion-input type="text" name="material" [(ngModel)]="product.material" required></ion-input>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input formControlName="price" type="number"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Color</ion-label>
-      <ion-input type="text" name="color" [(ngModel)]="product.color" required></ion-input>
+      <ion-label>Categoria</ion-label>
+      <ion-select placeholder="Categoria" formControlName="category">
+        <ion-select-option value="cocina">Cocina</ion-select-option>
+        <ion-select-option value="recamara">Recamara</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Existencia</ion-label>
-      <ion-input type="text" name="existencia" [(ngModel)]="product.existencia" required></ion-input>
+      <ion-label>Material</ion-label>
+      <ion-select placeholder="Material" formControlName="material">
+        <ion-select-option value="roble">Roble</ion-select-option>
+        <ion-select-option value="nogal">Nogal</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input type="text" name="nombre" [(ngModel)]="product.nombre" required></ion-input>
+      <ion-label>Color</ion-label>
+      <ion-select placeholder="Color" formControlName="color">
+        <ion-select-option value="negro">Negro</ion-select-option>
+        <ion-select-option value="gris">Gris</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Precio</ion-label>
-      <ion-input type="text" name="precio" [(ngModel)]="product.precio"></ion-input>
+      <ion-label position="floating">Existencia</ion-label>
+      <ion-input formControlName="stock" type="number"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Descripcion</ion-label>
-      <ion-input type="text" name="descripcion" [(ngModel)]="product.descripcion" required></ion-input>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input formControlName="description"></ion-input>
     </ion-item>
-    <ion-button expand="full" type="submit" [disabled]="formulario.invalid">Guardar</ion-button>
+    <p class="ion-text-center">
+      <ion-button color="primary" expand="full" type="submit" [disabled]="!product.valid">Guardar</ion-button>
+    </p>
   </form>
 </ion-content>
