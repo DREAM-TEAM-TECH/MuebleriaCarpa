@@ -6,33 +6,40 @@
           <ion-list-header>Muebleria Carpa</ion-list-header>
           <ion-note>hi@ionicframework.com</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <ion-menu-toggle auto-hide="true">
+            <ion-item lines="none" [routerLink]="['']">
+              <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
+              <ion-label>Cerrar Sesion</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
-        <hr size=".01px" color="D3D3D3">
-
-        <ion-menu-toggle auto-hide="true">
-          <ion-item lines="none" [routerLink]="['']">
-            <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
-            <ion-label>Cerrar Sesion</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
       </ion-content>
     </ion-menu>
+
     <ion-router-outlet id="main-content"></ion-router-outlet>
+    
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="new-product" [routerLink]="['new-product']">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-label>Nuevo Producto</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="speakers">
+          <ion-icon name="person-circle"></ion-icon>
+          <ion-label>Speakers</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="map">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Map</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="about">
+          <ion-icon name="information-circle"></ion-icon>
+          <ion-label>About</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
   </ion-split-pane>
 </ion-app>
