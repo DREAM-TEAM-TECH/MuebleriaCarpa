@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { AuthService } from "../servicios/auth.service"
+import { AuthService } from "../servicios/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginPage implements OnInit
   ingresar()
   {
     this.authService.login(this.email, this.password).then(res => {
-      this.router.navigate(['/folder/Inbox'])
+      this.router.navigate(['/menu'])
     }).catch(err => alert('Los datos son incorrectos'))
     this.email = null;
     this.password = null;
