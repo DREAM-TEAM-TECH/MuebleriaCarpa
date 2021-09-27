@@ -1,14 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/folder/inbox"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Nuevo Producto</ion-title>
-  </ion-toolbar>
+  <div class="grad_back">
+    <div class="btn_flex">
+      <div>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/folder/inbox"></ion-back-button>
+        </ion-buttons>
+      </div>
+    </div>
+    <ion-label class="subject">Nuevo Producto</ion-label>
+  </div>
 </ion-header>
 
-<ion-content>
-  <form [formGroup]="product" (ngSubmit)="onSubmit()">
+<ion-content class="ion-padding ion-text-center">
+  <form [formGroup]="product" (ngSubmit)="onSubmit()" class="newProductForm">
     <ion-item>
       <ion-label position="floating">Id</ion-label>
       <ion-input formControlName="id"></ion-input>
@@ -50,8 +54,6 @@
       <ion-label position="floating">Descripcion</ion-label>
       <ion-input formControlName="description"></ion-input>
     </ion-item>
-    <p class="ion-text-center">
-      <ion-button color="primary" expand="full" type="submit" [disabled]="!product.valid">Guardar</ion-button>
-    </p>
+      <ion-button class="ion-padding ion-text-center" color="primary" expand="full" type="submit" [disabled]="!product.valid">Guardar</ion-button>
   </form>
 </ion-content>
