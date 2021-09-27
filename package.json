@@ -23,6 +23,10 @@
     "@ionic/angular": "^5.5.2",
     "cordova-android": "9.1.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "firebase": "^9.1.0",
+>>>>>>> product
     "lodash": "^4.17.21",
 =======
     "firebase": "^9.1.0",
@@ -94,7 +98,11 @@
     ]
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> menu
+=======
+}
+>>>>>>> product
