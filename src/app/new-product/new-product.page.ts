@@ -26,7 +26,12 @@ export class NewProductPage implements OnInit {
     description: new FormControl(''),
   });
 
-  constructor() { }
+  constructor() {
+    const tabs = document.querySelectorAll('ion-tab-bar');
+    Object.keys(tabs).map((key) => {
+      tabs[key].style.display = 'none';
+    });
+   }
 
   ngOnInit() {
   }
