@@ -1,5 +1,7 @@
 {
   "name": "muebleriaCarpa",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

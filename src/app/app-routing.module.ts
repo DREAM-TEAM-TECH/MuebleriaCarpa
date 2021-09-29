@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'employee',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -30,8 +30,35 @@ const routes: Routes = [
         path:':employeeId',
         loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
       }
-    ]
+    ],
+    
+  }, 
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'new-product',
+    loadChildren: () => import('./new-product/new-product.module').then( m => m.NewProductPageModule)
+  },
+  {
+    path: 'display-products',
+    loadChildren: () => import('./display-products/display-products.module').then( m => m.DisplayProductsPageModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'proveedores',
+    loadChildren: () => import('./proveedores/proveedores.module').then( m => m.ProveedoresPageModule)
+  },
+  {
+    path: 'addproveedor',
+    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then( m => m.AddproveedorPageModule)
   }
+
+
 ];
 
 @NgModule({
