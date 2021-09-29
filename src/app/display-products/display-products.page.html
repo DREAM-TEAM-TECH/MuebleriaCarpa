@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>displayProducts</ion-title>
+    <ion-title>Productos Muebleria Carpa</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content fullscreen>
+  <ion-card *ngFor="let product of products">
+    <ion-img src="assets/slogo.png"></ion-img>
+    <ion-fab vertical="top" horizontal="end">
+      <ion-fab-button color="light">
+        <ion-icon name="cog-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button color="primary">
+          <ion-icon name="create-outline" (click)="newProduct = product" [routerLink]="['/new-product']"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button color="danger" (click)="deleteProduct(product)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+    <ion-item>
+    <ion-card-header>
+      <ion-card-subtitle class="category">{{product.category}}</ion-card-subtitle>
+      <ion-card-title>{{product.name}}</ion-card-title>
+    </ion-card-header>
+  </ion-item>
+  <ion-item>
+    <ion-card-content>
+      {{product.description}}
+      <p class="price">${{product.price}}</p>
+    </ion-card-content>
+  </ion-item>
+  </ion-card>
 </ion-content>

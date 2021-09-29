@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Product } from '../models';
+import { FirestoreService } from '../servicios/firestore.service';
 
 interface Category {
   id: string;
@@ -15,25 +18,38 @@ interface Category {
 })
 export class NewProductPage implements OnInit {
 
-  product = new FormGroup ({
-    id: new FormControl(''),
-    category: new FormControl(''),
-    material: new FormControl(''),
-    color: new FormControl(''),
-    stock: new FormControl(''),
-    name: new FormControl(''),
-    price: new FormControl(''),
-    description: new FormControl(''),
-  });
+  products: Product[] = [];
+  category: Category[] = [];
 
-  constructor() { }
-
-  ngOnInit() {
+  newProduct: Product = {
+    id: this.firestoreService.getId(),
+    name: '',
+    price: null,
+    category: '',
+    color: '',
+    material: '',
+    stock: null,
+    description: '', 
+    uploadDate: new Date()
   }
 
-  onSubmit(){
-    console.log('Form submit');
-    console.log(this.product.value);
+  private path = 'Productos/'
+
+  constructor(private router: Router ,public firestoreService: FirestoreService) {
+   }
+
+  ngOnInit() {
+    this.getProduct();
+  }
+
+  addProduct() {
+    this.firestoreService.createDoc(this.newProduct, this.path, this.newProduct.id);
+  }
+
+  getProduct() {
+    this.firestoreService.getCollection<Product>(this.path).subscribe(res => {
+      this.products = res;
+    });
   }
 
 }
