@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
-import { AuthService } from "../servicios/auth.service";
+import { FirestoreService } from "../servicios/firestore.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit
   email: string; 
   password: string;
 
-  constructor(private router: Router, private menu: MenuController, private authService: AuthService) 
+  constructor(private router: Router, private menu: MenuController, private authService: FirestoreService) 
   { 
     const tabs = document.querySelectorAll('ion-tab-bar');
     Object.keys(tabs).map((key) => {

@@ -26,7 +26,16 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'proveedores',
+    loadChildren: () => import('./proveedores/proveedores.module').then( m => m.ProveedoresPageModule)
+  },
+  {
+    path: 'addproveedor',
+    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then( m => m.AddproveedorPageModule)
   }
+
 
 ];
 
