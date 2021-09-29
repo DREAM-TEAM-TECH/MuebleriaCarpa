@@ -9,3 +9,9 @@ export interface Product {
     description: string; 
     uploadDate: Date;
 }
+
+export interface Category {
+    id: string;
+    nameCategory: string;
+    descCategory: string;
+}

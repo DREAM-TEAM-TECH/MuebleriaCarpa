@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Product } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
@@ -18,6 +19,7 @@ interface Category {
 export class NewProductPage implements OnInit {
 
   products: Product[] = [];
+  category: Category[] = [];
 
   newProduct: Product = {
     id: this.firestoreService.getId(),
@@ -33,11 +35,7 @@ export class NewProductPage implements OnInit {
 
   private path = 'Productos/'
 
-  constructor(public firestoreService: FirestoreService) {
-    const tabs = document.querySelectorAll('ion-tab-bar');
-    Object.keys(tabs).map((key) => {
-      tabs[key].style.display = 'none';
-    });
+  constructor(private router: Router ,public firestoreService: FirestoreService) {
    }
 
   ngOnInit() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { Product } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
 
@@ -11,28 +12,13 @@ export class DisplayProductsPage implements OnInit {
 
   products: Product[] = [];
 
-  newProduct: Product = {
-    id: this.firestoreService.getId(),
-    name: '',
-    price: null,
-    category: '',
-    color: '',
-    material: '',
-    stock: null,
-    description: '', 
-    uploadDate: new Date()
-  }
-
   private path = 'Productos/'
 
-  constructor(public firestoreService: FirestoreService) {
-    const tabs = document.querySelectorAll('ion-tab-bar');
-    Object.keys(tabs).map((key) => {
-      tabs[key].style.display = 'none';
-    });
+  constructor(public firestoreService: FirestoreService, private menu: MenuController) {
    }
 
   ngOnInit() {
+    this.menu.enable(false);
     this.getProduct();
   }
 
@@ -40,5 +26,9 @@ export class DisplayProductsPage implements OnInit {
     this.firestoreService.getCollection<Product>(this.path).subscribe(res => {
       this.products = res;
     });
+  }
+
+  deleteProduct(product : Product) {
+    this.firestoreService.deleteDoc(this.path, product.id);
   }
 }

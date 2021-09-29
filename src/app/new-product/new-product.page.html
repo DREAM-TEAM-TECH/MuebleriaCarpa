@@ -3,7 +3,7 @@
     <div class="btn_flex">
       <div>
         <ion-buttons slot="start">
-          <ion-back-button defaultHref="/folder/inbox" color="light"></ion-back-button>
+          <ion-back-button defaultHref="/display-products" color="light"></ion-back-button>
         </ion-buttons>
       </div>
     </div>
@@ -14,40 +14,40 @@
 <ion-content class="ion-padding ion-text-center">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input [(ngModel)]="newProduct.name"></ion-input>
+      <ion-input [(ngModel)]="newProduct.name" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Precio</ion-label>
-      <ion-input [(ngModel)]="newProduct.price" type="number"></ion-input>
+      <ion-input [(ngModel)]="newProduct.price" type="number" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Categoria</ion-label>
-      <ion-select placeholder="Categoria" [(ngModel)]="newProduct.category">
+      <ion-select placeholder="Categoria" [(ngModel)]="newProduct.category" required>
         <ion-select-option value="cocina">Cocina</ion-select-option>
         <ion-select-option value="recamara">Recamara</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Material</ion-label>
-      <ion-select placeholder="Material" [(ngModel)]="newProduct.material">
+      <ion-select placeholder="Material" [(ngModel)]="newProduct.material" required>
         <ion-select-option value="roble">Roble</ion-select-option>
         <ion-select-option value="nogal">Nogal</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Color</ion-label>
-      <ion-select placeholder="Color" [(ngModel)]="newProduct.color">
+      <ion-select placeholder="Color" [(ngModel)]="newProduct.color" required>
         <ion-select-option value="negro">Negro</ion-select-option>
         <ion-select-option value="gris">Gris</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Existencia</ion-label>
-      <ion-input [(ngModel)]="newProduct.stock" type="number"></ion-input>
+      <ion-input [(ngModel)]="newProduct.stock" type="number" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Descripcion</ion-label>
-      <ion-input [(ngModel)]="newProduct.description"></ion-input>
+      <ion-input [(ngModel)]="newProduct.description" required></ion-input>
     </ion-item>
-      <ion-button class="ion-padding ion-text-center" color="primary" expand="full" type="submit" (click)="addProduct()">Guardar</ion-button>
+      <ion-button [routerLink]="['/display-products']" class="ion-padding ion-text-center" color="primary" expand="full" type="submit" (click)="addProduct()">Guardar</ion-button>
 </ion-content>
