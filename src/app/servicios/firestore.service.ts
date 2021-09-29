@@ -9,7 +9,7 @@ import { AngularFirestore,
 })
 export class FirestoreService {
 
-  constructor(private AFauth :  AngularFireAuth, public db: AngularFirestore) { }
+  constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
 
   login(email:string, password:string)
   {
@@ -20,20 +20,32 @@ export class FirestoreService {
     });
   }
 
-  getCollection<tipo>(path: string)
-  {
-    const collection = this.db.collection<tipo>(path);
-    return collection.valueChanges();
-  }
-
-  createDoc(data: any, path: string, id:string)
-  {
-    const collection = this.db.collection(path);
+  createDoc(data: any, path: string, id: string) {
+    const collection = this.database.collection(path);
     return collection.doc(id).set(data);
   }
 
-  getId()
-  {
-    return this.db.createId();
+  getDoc(path: string, id: string) {
+    const collection = this.database.collection(path);
+    return collection.doc(id).valueChanges();
+  }
+
+  updateDoc(data: any, path: string, id: string) {
+    const collection = this.database.collection(path);
+    return collection.doc(id).update(data);
+  }
+
+  deleteDoc(path: string, id: string) {
+    const collection = this.database.collection(path);
+    return collection.doc(id).delete();
+  }
+
+  getId() {
+    return this.database.createId();
+  }
+
+  getCollection<tipo>(path: string) {
+    const collection = this.database.collection<tipo>(path);
+    return collection.valueChanges();
   }
 }
