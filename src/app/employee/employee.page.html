@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref = "folder/inbox"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Empleados</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+  <ion-list> 
+    <ion-item *ngFor = "let empleado of empleados" [routerLink] = "['/employee',  empleado.id]">
+      <ion-label>{{empleado.nombre}} {{empleado.apellido}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  
+  <ion-fab vertical = "bottom" horizontal = "end" slot = "fixed">
+    <ion-fab-button color = "dark" (click) = "addNewEmployee()">
+      <ion-icon name = "add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <ion-buttons slot = "start">
+      <ion-back-button defaultHref = "/employee"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo Empleado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list lines="full" class="ion-no-margin">
+          
+          <ion-list-header lines="full">
+            <ion-label>
+              Datos del empleado:
+            </ion-label>
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input placeholder="Nombre" clear-input = "true" #nombre></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Apellido</ion-label>
+            <ion-input placeholder="Apellido" clear-input = "true" #apellido></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">email</ion-label>
+            <ion-input placeholder="something@domain.com" type = "email" clear-input = "true" #email></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Sexo</ion-label>
+            <ion-select interface = "popover" placeholder = "Seleccione el sexo" #sexo>
+              <ion-select-option>Femenino</ion-select-option>
+              <ion-select-option>Masculino</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Fecha de Nacimiento</ion-label>
+            <ion-datetime  placeholder="Seleccione la fecha" #fecha></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Categoría</ion-label>
+              <ion-select interface = "popover" placeholder = "Seleccione la categoría">
+                <ion-select-option>Jefe</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Estado</ion-label>
+            <ion-select interface = "popover" placeholder = "Seleccione el estado">
+                <ion-select-option>Nuevo León</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Municipio</ion-label>
+              <ion-select interface = "popover" placeholder = "Seleccione el sexo">
+                <ion-select-option>San Pedro</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Colonia</ion-label>
+            <ion-select interface = "popover" placeholder = "Seleccione la colonia">
+                <ion-select-option>Del valle</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Calle</ion-label>
+            <ion-input placeholder="Calle" clear-input = "true" #calle></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Código postal</ion-label>
+            <ion-input placeholder="Código postal" clear-input = "true" #Cp></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Número exterior</ion-label>
+            <ion-input placeholder="Número exterior" clear-input = "true" #numExt></ion-input>
+          </ion-item>
+                  <ion-item>
+            <ion-label position="stacked">Teléfono</ion-label>
+            <ion-input placeholder="Teléfono" clear-input = "true" #telefono></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <section class = "full-width">
+          <ion-button color = "success" expand = "full" click = "addNewEmployee()">
+            GUARDAR
+          </ion-button>
+        </section>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
