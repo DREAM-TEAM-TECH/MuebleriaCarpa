@@ -12,48 +12,42 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center">
-  <form [formGroup]="product" (ngSubmit)="onSubmit()" class="newProductForm">
-    <ion-item>
-      <ion-label position="floating">Id</ion-label>
-      <ion-input formControlName="id"></ion-input>
-    </ion-item>
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="name"></ion-input>
+      <ion-input [(ngModel)]="newProduct.name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Precio</ion-label>
-      <ion-input formControlName="price" type="number"></ion-input>
+      <ion-input [(ngModel)]="newProduct.price" type="number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Categoria</ion-label>
-      <ion-select placeholder="Categoria" formControlName="category">
+      <ion-select placeholder="Categoria" [(ngModel)]="newProduct.category">
         <ion-select-option value="cocina">Cocina</ion-select-option>
         <ion-select-option value="recamara">Recamara</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Material</ion-label>
-      <ion-select placeholder="Material" formControlName="material">
+      <ion-select placeholder="Material" [(ngModel)]="newProduct.material">
         <ion-select-option value="roble">Roble</ion-select-option>
         <ion-select-option value="nogal">Nogal</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Color</ion-label>
-      <ion-select placeholder="Color" formControlName="color">
+      <ion-select placeholder="Color" [(ngModel)]="newProduct.color">
         <ion-select-option value="negro">Negro</ion-select-option>
         <ion-select-option value="gris">Gris</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Existencia</ion-label>
-      <ion-input formControlName="stock" type="number"></ion-input>
+      <ion-input [(ngModel)]="newProduct.stock" type="number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Descripcion</ion-label>
-      <ion-input formControlName="description"></ion-input>
+      <ion-input [(ngModel)]="newProduct.description"></ion-input>
     </ion-item>
-      <ion-button class="ion-padding ion-text-center" color="primary" expand="full" type="submit" [disabled]="!product.valid">Guardar</ion-button>
-  </form>
+      <ion-button class="ion-padding ion-text-center" color="primary" expand="full" type="submit" (click)="addProduct()">Guardar</ion-button>
 </ion-content>
