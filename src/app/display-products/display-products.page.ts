@@ -39,7 +39,11 @@ export class DisplayProductsPage implements OnInit {
     });
   }
 
-  deleteProduct(product : Product) {
-    this.firestoreService.deleteDoc(this.path, product.id);
+  deleteProduct(id: string) {
+    this.firestoreService.deleteProduct(id).then(() => {
+      console.log('Producto eliminado');
+    }).catch(error => {
+      console.log(error);
+    })
   }
 }

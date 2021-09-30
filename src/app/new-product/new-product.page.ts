@@ -33,6 +33,7 @@ export class NewProductPage implements OnInit {
       material: ['', Validators.required],
       stock: [null, Validators.required],
       description: ['', Validators.required],
+      uploadDate: new Date(),
     });
 
     this.id = this.aRoute.snapshot.paramMap.get('id');
@@ -117,6 +118,7 @@ export class NewProductPage implements OnInit {
           material: data.payload.data()['material'],
           stock: data.payload.data()['stock'],
           description: data.payload.data()['description'],
+          uploadDate: new Date(),
         });
       });
     }

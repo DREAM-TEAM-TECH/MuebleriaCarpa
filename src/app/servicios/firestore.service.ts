@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore,
-  AngularFirestoreDocument,
-  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { Product } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +19,8 @@ export class FirestoreService {
     });
   }
 
-  createDoc<tipo>(data: any, path: string, id: string) {
-    const collection = this.database.collection<tipo>(path);
+  createDoc(data: any, path: string, id: string) {
+    const collection = this.database.collection(path);
     return collection.doc(id).set(data);
   }
 
@@ -32,7 +29,7 @@ export class FirestoreService {
     return collection.doc(id).valueChanges();
   }
 
-  updateDoc(data: any, path: string, id: string){
+  updateDoc(data: any, path: string, id: string) {
     const collection = this.database.collection(path);
     return collection.doc(id).update(data);
   }
@@ -63,7 +60,11 @@ export class FirestoreService {
     return this.database.collection('Productos').add(product);
   }
 
-  updateProduct(data: any, id: string): Promise<any>{
+  updateProduct(id: string, data: any): Promise<any>{
     return this.database.collection('Productos').doc(id).update(data);
+  }
+
+  deleteProduct(id: string): Promise<any> {
+    return this.database.collection('Productos').doc(id).delete();
   }
 }
