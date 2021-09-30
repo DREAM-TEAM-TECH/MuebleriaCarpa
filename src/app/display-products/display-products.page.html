@@ -6,13 +6,14 @@
 
 <ion-content fullscreen>
   <ion-card *ngFor="let product of products">
+    <ion-img src="assets/slogo.png"></ion-img>
     <ion-fab vertical="top" horizontal="end">
       <ion-fab-button color="light">
         <ion-icon name="cog-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="bottom">
         <ion-fab-button color="primary">
-          <ion-icon name="create-outline" (click)="editProduct(product)" [routerLink]="['/new-product']"></ion-icon>
+          <ion-icon name="create-outline" [routerLink]="['/editProduct/', product.id]"></ion-icon>
         </ion-fab-button>
         <ion-fab-button color="danger" (click)="deleteProduct(product)">
           <ion-icon name="trash-outline"></ion-icon>

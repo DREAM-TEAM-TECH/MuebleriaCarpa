@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { Product } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
 
 @Component({
@@ -10,56 +10,115 @@ import { FirestoreService } from '../servicios/firestore.service';
   styleUrls: ['./new-product.page.scss'],
 })
 export class NewProductPage implements OnInit {
-
-  products: Product[] = [];
-
-  newProduct: Product = {
-    id: '',
-    name: '',
-    price: null,
-    category: '',
-    color: '',
-    material: '',
-    stock: null,
-    description: '', 
-    uploadDate: new Date()
-  }
-
-  private path = 'Productos/'
+  createProduct: FormGroup;
+  submitted = false;
+  id: string | null;
+  titulo = 'Nuevo Producto';
+  guardado = 'Guardar';
   loading: any;
 
-  constructor(public firestoreService: FirestoreService, public loadingController: LoadingController, public toastController: ToastController) {
-   }
+  constructor(
+    public firestoreService: FirestoreService,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    private fb: FormBuilder,
+    private aRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.createProduct = this.fb.group({
+      name: ['', Validators.required],
+      price: [null, Validators.required],
+      category: ['', Validators.required],
+      color: ['', Validators.required],
+      material: ['', Validators.required],
+      stock: [null, Validators.required],
+      description: ['', Validators.required],
+    });
 
-  ngOnInit() {
-    const product = this.firestoreService.getProduct();
-    if (product !== undefined) {
-      this.newProduct = product;
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
+  }
+
+  ngOnInit(): void {
+    this.editProduct();
+  }
+
+  saveProduct() {
+    this.presentLoading();
+    const product: any = {
+      name: this.createProduct.value.name,
+      price: this.createProduct.value.price,
+      category: this.createProduct.value.category,
+      color: this.createProduct.value.color,
+      material: this.createProduct.value.material,
+      stock: this.createProduct.value.stock,
+      description: this.createProduct.value.description,
+      uploadDate: new Date(),
+    }
+    this.firestoreService
+      .addProduct(product)
+      .then(() => {
+        this.presentToast('Guardado con exito', 2000);
+        this.loading.dismiss();
+        this.router.navigate(['/display-products']);
+        console.log('Guardado exitoso');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.loading.dismiss();
+      });
+  }
+
+  updateNewProduct() {
+    this.submitted = true;
+    if (this.createProduct.invalid) {
+      console.log('Error en acceder al producto');
+      return;
+    }
+    if (this.id === null) {
+      this.saveProduct();
+      console.log('Guardar producto');
+    } else {
+      this.saveEditProduct(this.id);
+      console.log('Editar producto');
     }
   }
-  
-  async saveProduct() {
+
+  saveEditProduct(id: string) {
     this.presentLoading();
-    const data = this.newProduct;
-    if (data.id === ''){
-      data.id = this.firestoreService.getId();
-    }
-    const path = 'Productos';
-    await this.firestoreService.createDoc<Product>(data, path, data.id).catch(res => {
-      console.log('Error -> ', res);
+    const product: any = {
+      name: this.createProduct.value.name,
+      price: this.createProduct.value.price,
+      category: this.createProduct.value.category,
+      color: this.createProduct.value.color,
+      material: this.createProduct.value.material,
+      stock: this.createProduct.value.stock,
+      description: this.createProduct.value.description,
+      uploadDate: new Date(),
+    };
+    this.firestoreService.updateProduct(id, product).then(() => {
+      this.presentToast('Guardado con exito', 2000);
+      this.loading.dismiss();
+      this.router.navigate(['/display-products']);
     });
-    this.presentToast('Guardado con éxito', 2000);
-    this.loading.dismiss();
-    this.newProduct = {
-      id: '',
-      name: '',
-      price: null,
-      category: '',
-      color: '',
-      material: '',
-      stock: null,
-      description: '', 
-      uploadDate: new Date()
+  }
+
+  editProduct() {
+    console.log('Editando');
+    this.titulo = 'Editar Producto';
+    if (this.id !== null) {
+      this.firestoreService.setProduct(this.id).subscribe(data => {
+        console.log(data.payload.data()['name']);
+        this.createProduct.setValue({
+          name: data.payload.data()['name'],
+          price: data.payload.data()['price'],
+          category: data.payload.data()['category'],
+          color: data.payload.data()['color'],
+          material: data.payload.data()['material'],
+          stock: data.payload.data()['stock'],
+          description: data.payload.data()['description'],
+        });
+      });
     }
   }
 
@@ -75,15 +134,8 @@ export class NewProductPage implements OnInit {
     const toast = await this.toastController.create({
       message: msg,
       cssClass: 'normal',
-      duration: timing
+      duration: timing,
     });
     toast.present();
   }
-
-  getProduct() {
-    this.firestoreService.getCollection<Product>(this.path).subscribe(res => {
-      this.products = res;
-    });
-  }
-
 }

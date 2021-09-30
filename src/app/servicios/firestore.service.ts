@@ -3,14 +3,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 import { Product } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-
-  editProduct: Product;
 
   constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
 
@@ -33,7 +32,7 @@ export class FirestoreService {
     return collection.doc(id).valueChanges();
   }
 
-  updateDoc(data: any, path: string, id: string) {
+  updateDoc(data: any, path: string, id: string){
     const collection = this.database.collection(path);
     return collection.doc(id).update(data);
   }
@@ -52,11 +51,19 @@ export class FirestoreService {
     return collection.valueChanges();
   }
 
-  setProduct(product: Product){
-    this.editProduct = product;
+  setProduct(id: string): Observable<any> {
+    return this.database.collection('Productos').doc(id).snapshotChanges();
   }
 
-  getProduct() {
-    return this.editProduct;
+  getProduct(): Observable<any> {
+    return this.database.collection('Productos', ref => ref.orderBy('category')).snapshotChanges();
+  }
+
+  addProduct(product: any): Promise<any>{
+    return this.database.collection('Productos').add(product);
+  }
+
+  updateProduct(data: any, id: string): Promise<any>{
+    return this.database.collection('Productos').doc(id).update(data);
   }
 }

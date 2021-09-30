@@ -11,7 +11,7 @@ import { FirestoreService } from '../servicios/firestore.service';
 })
 export class DisplayProductsPage implements OnInit {
 
-  products: Product[] = [];
+  products: any[] = [];
 
   private path = 'Productos/'
 
@@ -28,13 +28,15 @@ export class DisplayProductsPage implements OnInit {
   }
 
   getProduct() {
-    this.firestoreService.getCollection<Product>(this.path).subscribe(res => {
-      this.products = res;
+    this.firestoreService.getProduct().subscribe(data => {
+      this.products = [];
+      data.forEach((element:any) => {
+        this.products.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
     });
-  }
-
-  editProduct(product: Product){
-    this.firestoreService.setProduct(product);
   }
 
   deleteProduct(product : Product) {

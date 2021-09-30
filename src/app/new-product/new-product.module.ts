@@ -14,7 +14,8 @@ import { NewProductPage } from './new-product.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    NewProductPageRoutingModule
+    NewProductPageRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [CurrencyPipe],
   declarations: [NewProductPage]
