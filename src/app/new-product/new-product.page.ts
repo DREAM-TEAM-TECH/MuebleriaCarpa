@@ -37,6 +37,7 @@ export class NewProductPage implements OnInit {
    }
 
   ngOnInit() {
+    this.getProduct();
   }
 
   addProduct() {
