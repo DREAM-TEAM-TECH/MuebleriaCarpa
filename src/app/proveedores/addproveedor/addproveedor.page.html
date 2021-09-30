@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/proveedores"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">Añadir proveedor</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <form >
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="Proveedor.nombre" name= "nombre" ></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="Proveedor.apellido" name="apellido" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Producto</ion-label>
+        <ion-input [(ngModel)]="Proveedor.producto" name="producto" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Estado</ion-label>
+        <ion-input [(ngModel)]="Proveedor.estado" name="estado" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Municipio</ion-label>
+        <ion-input [(ngModel)]="Proveedor.municipio" name="municipio" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Colonia</ion-label>
+        <ion-input [(ngModel)]="Proveedor.colonia" name="colonia" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Calle</ion-label>
+        <ion-input [(ngModel)]="Proveedor.calle" name="calle" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Codigo postal</ion-label>
+        <ion-input [(ngModel)]="Proveedor.codigo_postal" name="codigo_postal" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Numero exterior</ion-label>
+        <ion-input [(ngModel)]="Proveedor.num_exterior" name="num_exterior" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input [(ngModel)]="Proveedor.telefono" name="telefono" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Empresa</ion-label>
+        <ion-input [(ngModel)]="Proveedor.empresa" name="empresa" ></ion-input>
+      </ion-item>
+    </form>
+    <br>
+    <ion-button expand="full" (click)="guardar()" color="success">
+      Añadir
+    </ion-button>
+</ion-card-content>
+</ion-card>
+
+</ion-content>
