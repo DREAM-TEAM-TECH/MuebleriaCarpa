@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/proveedores"></ion-back-button>
+      <ion-back-button defaultHref="/proveedores" (click)="resetForm()"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -26,8 +26,10 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Producto</ion-label>
-        <ion-input [(ngModel)]="Proveedor.producto" name="producto" ></ion-input>
+        <ion-label>Producto</ion-label>
+        <ion-select placeholder="Producto" name="name" [(ngModel)]="Proveedor.producto" required>>
+          <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
