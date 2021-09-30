@@ -11,7 +11,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class ProveedoresPage implements OnInit {
 
-  private path = 'Proveedores/';
+  private path = '/Proveedores';
 
   proveedores: Proveedor[] = [];
 
@@ -56,6 +56,7 @@ export class ProveedoresPage implements OnInit {
 
   deleteProveedor(proveedor: Proveedor)
   {
+    console.log(proveedor.id)
     this.db.deleteDoc(this.path, proveedor.id)
   }
 

@@ -14,13 +14,12 @@ export class AddproveedorPage implements OnInit {
 
   private path2 = '/Productos';
 
-  private id = this.db.getId();
 
   Productos: Product[] = [];
 
   Proveedor: Proveedor = 
   {
-    id: this.id,
+    id: '',
     nombre: '',
     apellido: '',
     producto: '',
@@ -45,7 +44,8 @@ export class AddproveedorPage implements OnInit {
 
   guardar()
   {
-    this.db.createDoc(this.Proveedor, this.path, this.id);
+    this.Proveedor.id = this.db.getId();
+    this.db.createDoc(this.Proveedor, this.path, this.Proveedor.id);
     this.router.navigate(['/proveedores'])
     this.resetForm(); 
   }

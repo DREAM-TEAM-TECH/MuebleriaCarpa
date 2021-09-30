@@ -27,7 +27,7 @@
 
       <ion-item>
         <ion-label>Producto</ion-label>
-        <ion-select placeholder="Proveedor.producto" name="name" [(ngModel)]="Proveedor.producto" required>>
+        <ion-select placeholder="Producto" name="name" [(ngModel)]="Proveedor.producto" required>>
           <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
         </ion-select>
       </ion-item>
