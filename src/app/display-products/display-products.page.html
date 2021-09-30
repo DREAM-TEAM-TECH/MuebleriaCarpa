@@ -6,14 +6,13 @@
 
 <ion-content fullscreen>
   <ion-card *ngFor="let product of products">
-    <ion-img src="assets/slogo.png"></ion-img>
     <ion-fab vertical="top" horizontal="end">
       <ion-fab-button color="light">
         <ion-icon name="cog-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="bottom">
         <ion-fab-button color="primary">
-          <ion-icon name="create-outline" (click)="newProduct = product" [routerLink]="['/new-product']"></ion-icon>
+          <ion-icon name="create-outline" (click)="editProduct(product)" [routerLink]="['/new-product']"></ion-icon>
         </ion-fab-button>
         <ion-fab-button color="danger" (click)="deleteProduct(product)">
           <ion-icon name="trash-outline"></ion-icon>
@@ -33,12 +32,9 @@
     </ion-card-content>
   </ion-item>
   </ion-card>
-<<<<<<< HEAD
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" (click)="addProduct()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-=======
->>>>>>> 82d51eca99f667bc7ee8542575d3c913d1a1c4f9
 </ion-content>

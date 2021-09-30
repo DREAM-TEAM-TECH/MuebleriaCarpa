@@ -3,11 +3,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Product } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
+
+  editProduct: Product;
 
   constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
 
@@ -20,8 +23,8 @@ export class FirestoreService {
     });
   }
 
-  createDoc(data: any, path: string, id: string) {
-    const collection = this.database.collection(path);
+  createDoc<tipo>(data: any, path: string, id: string) {
+    const collection = this.database.collection<tipo>(path);
     return collection.doc(id).set(data);
   }
 
@@ -47,5 +50,13 @@ export class FirestoreService {
   getCollection<tipo>(path: string) {
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
+  }
+
+  setProduct(product: Product){
+    this.editProduct = product;
+  }
+
+  getProduct() {
+    return this.editProduct;
   }
 }
