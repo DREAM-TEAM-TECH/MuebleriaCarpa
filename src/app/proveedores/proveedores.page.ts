@@ -15,7 +15,23 @@ export class ProveedoresPage implements OnInit {
 
   proveedores: Proveedor[] = [];
 
-  constructor(public db: FirestoreService, private router: Router, private menu: MenuController) { }
+  Proveedor: Proveedor = 
+  {
+    id: '',
+    nombre: '',
+    apellido: '',
+    producto: '',
+    estado: '',
+    municipio: '',
+    colonia: '',
+    calle: '',
+    codigo_postal: null,
+    num_exterior: null,
+    telefono: null,
+    empresa: null,
+  };
+
+  constructor(public db: FirestoreService, private router: Router, private menu: MenuController, private exampleService: FirestoreService) { }
 
   ngOnInit() 
   {
@@ -31,5 +47,16 @@ export class ProveedoresPage implements OnInit {
   }
 
   add(){this.router.navigate(['/addproveedor'])}
+
+  edit(proveedor: Proveedor)
+  {
+    this.exampleService.sendObjectSource(proveedor);
+    this.router.navigate(['/editproveedor'])
+  }
+
+  deleteProveedor(proveedor: Proveedor)
+  {
+    this.db.deleteDoc(this.path, proveedor.id)
+  }
 
 }

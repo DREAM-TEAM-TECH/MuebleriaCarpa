@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BehaviorSubject } from 'rxjs'
 import { AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection } from '@angular/fire/compat/firestore';
@@ -9,7 +10,16 @@ import { AngularFirestore,
 })
 export class FirestoreService {
 
+  private objectSource = new BehaviorSubject<{}>({});
+  $getObjectSource = this.objectSource.asObservable();
+
+
   constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
+
+  sendObjectSource(data:any)
+  {
+    this.objectSource.next(data);
+  }
 
   login(email:string, password:string)
   {
