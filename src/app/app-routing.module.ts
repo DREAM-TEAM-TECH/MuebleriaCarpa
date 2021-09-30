@@ -30,7 +30,7 @@ const routes: Routes = [
         path:':employeeId',
         loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
       }
-    ]
+    ],
     
   }, 
   {
