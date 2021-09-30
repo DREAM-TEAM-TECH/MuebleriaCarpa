@@ -3,6 +3,7 @@ import { Proveedor } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
 import { Router} from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-proveedores',
@@ -11,9 +12,10 @@ import { MenuController } from '@ionic/angular';
 })
 export class ProveedoresPage implements OnInit {
 
+  proveedores: any[] = [];
+
   private path = '/Proveedores';
 
-  proveedores: Proveedor[] = [];
 
   Proveedor: Proveedor = 
   {
@@ -36,28 +38,32 @@ export class ProveedoresPage implements OnInit {
   ngOnInit() 
   {
     this.menu.enable(true)
-    this.listar();
+    this.getProveedores()
   }
 
-  listar()
-  {
-    this.db.getCollection<Proveedor>(this.path).subscribe(res => {
-      this.proveedores = res;
+  getProveedores()
+{
+  this.db.getProveedores().subscribe(data => {
+    this.proveedores = [];
+    data.forEach((element:any) => {
+      this.proveedores.push({
+        id: element.payload.doc.id,
+        ...element.payload.doc.data()
+      })
     });
-  }
+    console.log(this.proveedores)
+  });
+}
 
   add(){this.router.navigate(['/addproveedor'])}
 
-  edit(proveedor: Proveedor)
+  eliminarProveedor(id: string)
   {
-    this.exampleService.sendObjectSource(proveedor);
-    this.router.navigate(['/editproveedor'])
-  }
-
-  deleteProveedor(proveedor: Proveedor)
-  {
-    console.log(proveedor.id)
-    this.db.deleteDoc(this.path, proveedor.id)
+    this.db.eliminarProvedor(id).then(() => {
+      console.log('Proveedor eliminado')
+    }).catch(error => {
+      console.log(error)
+    })
   }
 
 }
