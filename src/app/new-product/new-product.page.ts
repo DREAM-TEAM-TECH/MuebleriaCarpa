@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { FirestoreService } from '../servicios/firestore.service';
 
 @Component({
@@ -23,7 +23,8 @@ export class NewProductPage implements OnInit {
     public toastController: ToastController,
     private fb: FormBuilder,
     private aRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public alertController: AlertController
   ) {
     this.createProduct = this.fb.group({
       name: ['', Validators.required],
@@ -73,6 +74,7 @@ export class NewProductPage implements OnInit {
   updateNewProduct() {
     this.submitted = true;
     if (this.createProduct.invalid) {
+      this.presentAlert();
       console.log('Error en acceder al producto');
       return;
     }
@@ -105,9 +107,9 @@ export class NewProductPage implements OnInit {
   }
 
   editProduct() {
-    console.log('Editando');
-    this.titulo = 'Editar Producto';
     if (this.id !== null) {
+      this.titulo = 'Editar Producto';
+      this.guardado = 'Actualizar'
       this.firestoreService.setProduct(this.id).subscribe(data => {
         console.log(data.payload.data()['name']);
         this.createProduct.setValue({
@@ -139,5 +141,17 @@ export class NewProductPage implements OnInit {
       duration: timing,
     });
     toast.present();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'normal',
+      header: 'Alerta',
+      subHeader: 'Error en guardar producto',
+      message: 'Todos los campos son obligatorios',
+      buttons: ['Hecho']
+    });
+
+    await alert.present();
   }
 }

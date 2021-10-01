@@ -1,37 +1,61 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Productos Muebleria Carpa</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="titulo">Productos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-card *ngFor="let product of products">
-    <ion-img src="assets/slogo.png"></ion-img>
     <ion-fab vertical="top" horizontal="end">
-      <ion-fab-button color="light">
+      <ion-fab-button color="light" size="small">
         <ion-icon name="cog-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-list side="bottom">
-        <ion-fab-button color="primary">
-          <ion-icon name="create-outline" [routerLink]="['/edit-product/', product.id]"></ion-icon>
+      <ion-fab-list side="start">
+        <ion-fab-button color="secondary" size="small">
+          <ion-icon
+            name="create-outline"
+            [routerLink]="['/edit-product/', product.id]"
+          ></ion-icon>
         </ion-fab-button>
-        <ion-fab-button color="danger" (click)="deleteProduct(product.id)">
+        <ion-fab-button
+          size="small"
+          color="danger"
+          (click)="deleteProduct(product.id)"
+        >
           <ion-icon name="trash-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab>
     <ion-item>
-    <ion-card-header>
-      <ion-card-subtitle class="category">{{product.category}}</ion-card-subtitle>
-      <ion-card-title>{{product.name}}</ion-card-title>
-    </ion-card-header>
-  </ion-item>
-  <ion-item>
-    <ion-card-content>
-      {{product.description}}
-      <p class="price">${{product.price}}</p>
-    </ion-card-content>
-  </ion-item>
+      <ion-card-header>
+        <ion-card-subtitle class="category"
+          >{{product.category}}</ion-card-subtitle
+        >
+        <ion-card-title>{{product.name}}</ion-card-title>
+        <ion-card-subtitle class="material"
+          >Material | {{product.material}}</ion-card-subtitle
+        >
+        <ion-card-subtitle class="material"
+          >Existencia | {{product.stock}}</ion-card-subtitle
+        >
+      </ion-card-header>
+    </ion-item>
+    <ion-item>
+      <ion-card-content>
+        <ion-card-subtitle class="description"
+          >Descripcion</ion-card-subtitle
+        >
+        {{product.description}}
+      </ion-card-content>
+    </ion-item>
+    <ion-item>
+      <ion-card-content>
+        <p class="price">Precio | ${{product.price}}</p>
+      </ion-card-content>
+    </ion-item>
   </ion-card>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" (click)="addProduct()">

@@ -2,6 +2,13 @@ ion-card {
     position: relative;
 }
 
+.titulo
+{
+    font-weight: 600;
+    font-size: 25px;
+    padding-left: 15px;
+}
+
 .category {
     color: #69bb7b;
     text-transform: capitalize;
@@ -12,4 +19,14 @@ ion-card {
     color: #3880ff;
     font-weight: bold;
     font-size: 20px;
+}
+
+.material {
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.description {
+    font-size: 15px;
+    padding-bottom: 5px;
 }
