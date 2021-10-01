@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button
             defaultHref="/display-products"
-            color="light"
+            color="light" (click)="clear()"
           ></ion-back-button>
         </ion-buttons>
       </div>
@@ -51,8 +51,7 @@
       <ion-input formControlName="stock" type="number" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input type="text" formControlName="description" required></ion-input>
+      <ion-textarea placeholder="Descripcion" type="text" formControlName="description" required></ion-textarea>
     </ion-item>
     <ion-button
       routerLink="/display-products"

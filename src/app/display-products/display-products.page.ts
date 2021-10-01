@@ -10,12 +10,13 @@ import { FirestoreService } from '../servicios/firestore.service';
 })
 export class DisplayProductsPage implements OnInit {
   products: any[] = [];
+  loading: any;
 
   constructor(
     public firestoreService: FirestoreService,
     private router: Router,
     private alertController: AlertController, 
-    public toastController: ToastController
+    public toastController: ToastController,
   ) {}
 
   ngOnInit() {
@@ -50,7 +51,6 @@ export class DisplayProductsPage implements OnInit {
           cssClass: 'normal',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
-            this.alertController.dismiss();
           },
         },
         {
@@ -61,7 +61,6 @@ export class DisplayProductsPage implements OnInit {
               .deleteProduct(id)
               .then(() => {
                 this.presentToast('Eliminado con exito', 2000);
-                this.alertController.dismiss();
                 console.log('Producto eliminado');
               })
               .catch((error) => {

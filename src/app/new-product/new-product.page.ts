@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
@@ -9,7 +9,7 @@ import { FirestoreService } from '../servicios/firestore.service';
   templateUrl: './new-product.page.html',
   styleUrls: ['./new-product.page.scss'],
 })
-export class NewProductPage implements OnInit {
+export class NewProductPage implements OnInit, AfterViewInit{
   createProduct: FormGroup;
   submitted = false;
   id: string | null;
@@ -41,8 +41,18 @@ export class NewProductPage implements OnInit {
     console.log(this.id);
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.editProduct();
+  }
+
+  ngOnInit(): void {
+  }
+
+  clear() {
+    this.createProduct.reset();
+    this.router.navigate(['/display-products'])
+    this.ngAfterViewInit();
+    console.log('Saliendo')
   }
 
   saveProduct() {
@@ -80,9 +90,11 @@ export class NewProductPage implements OnInit {
     }
     if (this.id === null) {
       this.saveProduct();
+      this.createProduct.reset();
       console.log('Guardar producto');
     } else {
       this.saveEditProduct(this.id);
+      this.createProduct.reset();
       console.log('Editar producto');
     }
   }
@@ -111,7 +123,6 @@ export class NewProductPage implements OnInit {
       this.titulo = 'Editar Producto';
       this.guardado = 'Actualizar'
       this.firestoreService.setProduct(this.id).subscribe(data => {
-        console.log(data.payload.data()['name']);
         this.createProduct.setValue({
           name: data.payload.data()['name'],
           price: data.payload.data()['price'],
@@ -153,5 +164,5 @@ export class NewProductPage implements OnInit {
     });
 
     await alert.present();
-  }
+  } 
 }
