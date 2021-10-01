@@ -3,6 +3,7 @@ import { Product, Proveedor } from 'src/app/models';
 import { FirestoreService } from '../../servicios/firestore.service';
 import { ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addproveedor',
@@ -24,7 +25,7 @@ export class AddproveedorPage implements OnInit {
 
   Productos: Product[] = [];
 
-  constructor(public db: FirestoreService, private router: Router, private aRoute: ActivatedRoute, private fb: FormBuilder) 
+  constructor(public db: FirestoreService, private router: Router, private aRoute: ActivatedRoute, private fb: FormBuilder, private loadingCtrl: LoadingController) 
   {
     this.createProveedor = this.fb.group({
       nombre: ['', Validators.required],
@@ -50,12 +51,25 @@ export class AddproveedorPage implements OnInit {
   {
     this.db.getCollection<Product>(this.path2).subscribe(res => {
       this.Productos = res;
+    }); 
+    this.Listar();
+  }
+ 
+  async presentLoading(message: string) {
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'my-custom-class',
+      message,
+      duration: 1000
     });
-    this.Editar();
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
   agregarProveedor()
   {
+    this.presentLoading('Guardando...');
     const proveedor: any =
     {
       nombre: this.createProveedor.value.nombre, 
@@ -103,6 +117,7 @@ export class AddproveedorPage implements OnInit {
 
   guardarEdit(id: string)
   {
+    this.presentLoading('Guardando cambios...');
     const proveedor: any =
     {
       nombre: this.createProveedor.value.nombre, 
@@ -123,7 +138,7 @@ export class AddproveedorPage implements OnInit {
     })
   }
 
-  Editar()
+  Listar()
   {
     this.titulo = 'Editar proveedor'
     if(this.id !== null)
@@ -145,5 +160,4 @@ export class AddproveedorPage implements OnInit {
       })
     }
   }
-
 }

@@ -10,7 +10,7 @@
 <ion-card>
 
   <ion-card-header>
-    <ion-card-title class="ion-text-center">{{titulo}}</ion-card-title>
+    <ion-card-title class="ion-text-center">Detalles</ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
@@ -18,67 +18,59 @@
     <form [formGroup]="createProveedor">
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" formControlName= "nombre" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName= "nombre" ></ion-input>
       </ion-item>
   
       <ion-item>
         <ion-label position="floating">Apellido</ion-label>
-        <ion-input type="text" formControlName="apellido" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="apellido" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Producto</ion-label>
         <ion-input disabled="true" type="text" formControlName="producto" ></ion-input>
-        <ion-select placeholder="Ingresar producto">
-          <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
-        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Estado</ion-label>
-        <ion-input type="text" formControlName="estado" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="estado" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Municipio</ion-label>
-        <ion-input type="text" formControlName="municipio" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="municipio" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Colonia</ion-label>
-        <ion-input type="text" formControlName="colonia" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="colonia" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Calle</ion-label>
-        <ion-input type="text" formControlName="calle" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="calle" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Codigo postal</ion-label>
-        <ion-input type="number" formControlName="codigo_postal" ></ion-input>
+        <ion-input disabled="true" type="number" formControlName="codigo_postal" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Numero exterior</ion-label>
-        <ion-input type="number" formControlName="num_exterior" ></ion-input>
+        <ion-input disabled="true" type="number" formControlName="num_exterior" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Telefono</ion-label>
-        <ion-input type="number" formControlName="telefono" ></ion-input>
+        <ion-input disabled="true" type="number" formControlName="telefono" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Empresa</ion-label>
-        <ion-input type="text" formControlName="empresa" ></ion-input>
+        <ion-input disabled="true" type="text" formControlName="empresa" ></ion-input>
       </ion-item>
     </form>
-
-    <br>
-    <ion-button type="submit" expand="full" (click)="Actualizar()" color="success">
-      Añadir
-    </ion-button>
 </ion-card-content>
 </ion-card>
 
