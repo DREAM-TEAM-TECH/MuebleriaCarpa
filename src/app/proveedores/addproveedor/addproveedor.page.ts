@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Product, Proveedor } from 'src/app/models';
 import { FirestoreService } from '../../servicios/firestore.service';
 import { ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addproveedor',
   templateUrl: './addproveedor.page.html',
   styleUrls: ['./addproveedor.page.scss'],
 })
-export class AddproveedorPage implements OnInit {
+export class AddproveedorPage implements OnInit, AfterViewInit {
 
   createProveedor: FormGroup;
+  editProveedor: FormGroup;
   submitted = false; 
-
-  private path = '/Proveedores';
 
   private path2 = '/Productos';
 
@@ -25,11 +24,13 @@ export class AddproveedorPage implements OnInit {
 
   Productos: Product[] = [];
 
-  constructor(public db: FirestoreService, private router: Router, private aRoute: ActivatedRoute, private fb: FormBuilder, private loadingCtrl: LoadingController) 
+  constructor(public db: FirestoreService, private router: Router, private aRoute: ActivatedRoute, 
+    private fb: FormBuilder, private loadingCtrl: LoadingController, public alertController: AlertController) 
   {
     this.createProveedor = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
+      mostrarProducto: [''],
       producto: ['', Validators.required],
       estado: ['', Validators.required],
       municipio: ['', Validators.required],
@@ -39,9 +40,7 @@ export class AddproveedorPage implements OnInit {
       num_exterior: [null , Validators.required],
       telefono: [null , Validators.required],
       empresa: [null , Validators.required],
-
     })
-
     this.id = this.aRoute.snapshot.paramMap.get('id');
     console.log(this.id)
   }
@@ -53,6 +52,28 @@ export class AddproveedorPage implements OnInit {
       this.Productos = res;
     }); 
     this.Listar();
+  }
+
+  ngAfterViewInit()
+  {
+    this.db.getCollection<Product>(this.path2).subscribe(res => {
+      this.Productos = res;
+    }); 
+    this.Listar();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message: 'Faltan uno o mas campos de llenar',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
  
   async presentLoading(message: string) {
@@ -101,7 +122,7 @@ export class AddproveedorPage implements OnInit {
 
     if(this.createProveedor.invalid)
     {
-      console.log('no puedes pasar')
+      this.presentAlert();
       return;
     }
 
@@ -140,14 +161,15 @@ export class AddproveedorPage implements OnInit {
 
   Listar()
   {
-    this.titulo = 'Editar proveedor'
     if(this.id !== null)
     {
+      this.titulo = 'Editar proveedor'
       this.db.getProveedor(this.id).subscribe(data => {
         this.createProveedor.setValue({
           nombre: data.payload.data()['nombre'],
           apellido: data.payload.data()['apellido'],
-          producto: data.payload.data()['producto'],
+          mostrarProducto: data.payload.data()['producto'],
+          producto: data.payload.data(),
           estado: data.payload.data()['estado'],
           municipio: data.payload.data()['municipio'],
           colonia: data.payload.data()['colonia'],

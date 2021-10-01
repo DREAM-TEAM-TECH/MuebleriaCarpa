@@ -13,10 +13,10 @@ export class FirestoreService {
 
   constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
 
-  login(email:string, password:string)
+  login(data: any)
   {
     return new Promise((resolve, rejected) =>{
-      this.AFauth.signInWithEmailAndPassword(email, password).then(user => {
+      this.AFauth.signInWithEmailAndPassword(data.username, data.password).then(user => {
         resolve(user)
       }).catch(err => rejected(err));
     });

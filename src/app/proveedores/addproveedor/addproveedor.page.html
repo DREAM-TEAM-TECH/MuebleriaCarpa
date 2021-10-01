@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/proveedores"></ion-back-button>
+      <ion-back-button defaultHref="/proveedores" (click)="ngAfterViewInit()"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <ion-card>
-
+ 
   <ion-card-header>
     <ion-card-title class="ion-text-center">{{titulo}}</ion-card-title>
   </ion-card-header>
@@ -28,8 +28,8 @@
 
       <ion-item>
         <ion-label position="floating">Producto</ion-label>
-        <ion-input disabled="true" type="text" formControlName="producto" ></ion-input>
-        <ion-select placeholder="Ingresar producto">
+        <ion-input disabled="true" type="text" formControlName="mostrarProducto" ></ion-input>
+        <ion-select placeholder="Ingresar producto" formControlName="producto">
           <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
         </ion-select>
       </ion-item>
