@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'employee',
     pathMatch: 'full'
   },
   {
@@ -13,16 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'employee',
-    loadChildren: () => import('./employee/employee.module').then( m => m.EmployeePageModule)
-  },
-  {
-    path: 'employee-add',
-    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
-  },
-  {
-    path:'employee-detail',
-    children: [
-      {
+    children:[{
         path:'',
         loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
       },
@@ -30,9 +21,16 @@ const routes: Routes = [
         path:':employeeId',
         loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
       }
-    ],
-    
-  }, 
+    ]
+  },
+  {
+    path: 'employee-add',
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
+  },
+  {
+    path: 'employee-edit/:employeeId',
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
+  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
