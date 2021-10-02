@@ -132,7 +132,7 @@ export class EmployeeAddPage implements OnInit {
         email: this.createEmpleado.value.email,
         sexo: this.createEmpleado.value.sexo,
         fecha_nacimiento: this.createEmpleado.value.fechaDeNacimiento,
-        categoria: this.createEmpleado.value.categoria,
+        id_categoria_empleado: this.createEmpleado.value.categoria,
         id_estados: this.createEmpleado.value.estado,
         id_Municipios: this.createEmpleado.value.municipio,
         id_colonia: this.createEmpleado.value.colonia,

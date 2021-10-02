@@ -15,7 +15,7 @@ export class EmployeeDetailPage implements OnInit {
   
   id: string | null
   createEmpleado: FormGroup
-  private nombre:string;
+  public nombre:string;
   constructor(private router: Router, public firestoreService: FirestoreService, private actRoute: ActivatedRoute, private fb: FormBuilder) {
       
       this.createEmpleado = this.fb.group({
@@ -40,7 +40,9 @@ export class EmployeeDetailPage implements OnInit {
   ngOnInit() {
     this.Listar()
   }
-
+  // ionViewWillEnter(){
+  //   this.Listar()
+  // }
   Listar()
   {
     if(this.id !== null)
@@ -61,7 +63,7 @@ export class EmployeeDetailPage implements OnInit {
           num_exterior: data.payload.data()['numero_exterior'],
           telefono: data.payload.data()['telefono'],
         })
-        this.nombre = data.payload.data()['nombre'] + ' ' +data.payload.data()['apellido'];
+        this.nombre = data.payload.data()['nombre'] + ' ' + data.payload.data()['apellido'];
       })
     }
   }

@@ -9,6 +9,10 @@ export class TabsService {
 hideTabBarPages = [
 'login',
 'new-product',
+'employee-detail',
+'employee-add',
+'employee-edit',
+':employeeId'
 ];
 routeParamPages: string[] = [
 'tabs1',
