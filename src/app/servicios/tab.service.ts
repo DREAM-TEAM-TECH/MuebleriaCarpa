@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 @Injectable({
   providedIn: 'root',
 })
+
 export class TabsService {
   hideTabBarPages = ['login', 'new-product'];
   routeParamPages: string[] = ['tabs1'];

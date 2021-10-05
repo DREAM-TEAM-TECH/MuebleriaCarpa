@@ -27,21 +27,18 @@
     </ion-item>
     <ion-item>
       <ion-label>Categoria</ion-label>
-      <ion-input disabled="true" type="text" formControlName="showCategory"></ion-input>
       <ion-select placeholder="Categoria" formControlName="category" required>
         <ion-select-option *ngFor="let category of categories" >{{category.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Material</ion-label>
-      <ion-input disabled="true" type="text" formControlName="showMaterial"></ion-input>
       <ion-select placeholder="Material" formControlName="material" required>
-        <ion-select-option *ngFor="let material of materials">{{material.name}}</ion-select-option>
+        <ion-select-option *ngFor="let material of materials" >{{material.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Color</ion-label>
-      <ion-input disabled="true" type="text" formControlName="showColor"></ion-input>
       <ion-select placeholder="Color" formControlName="color" required>
         <ion-select-option *ngFor="let color of colors">{{color.color}}</ion-select-option>
       </ion-select>

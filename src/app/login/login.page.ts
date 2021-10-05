@@ -15,6 +15,10 @@ export class LoginPage implements OnInit
 
   constructor(private router: Router, private menu: MenuController, private authService: FirestoreService) 
   { 
+    const tabs = document.querySelectorAll('ion-tab-bar');
+    Object.keys(tabs).map((key) => {
+      tabs[key].style.display = 'none';
+    });
   }
 
   ngOnInit(){
@@ -23,7 +27,7 @@ export class LoginPage implements OnInit
   ingresar()
   {
     this.authService.login(this.email, this.password).then(res => {
-      this.router.navigate(['/menu'])
+      this.router.navigate(['/display-products'])
     }).catch(err => alert('Los datos son incorrectos'))
     this.email = null;
     this.password = null;

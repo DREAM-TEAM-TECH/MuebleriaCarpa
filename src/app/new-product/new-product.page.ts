@@ -38,11 +38,8 @@ export class NewProductPage implements OnInit, AfterViewInit{
     this.createProduct = this.fb.group({
       name: ['', Validators.required],
       price: [null, Validators.required],
-      showCategory: [''],
       category: ['', Validators.required],
-      showColor: [''],
       color: ['', Validators.required],
-      showMaterial: [''],
       material: ['', Validators.required],
       stock: [null, Validators.required],
       description: ['', Validators.required],
@@ -60,6 +57,7 @@ export class NewProductPage implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     this.foreignKeysInit();
+    this.editProduct();
   }
 
   clear() {
@@ -97,13 +95,11 @@ export class NewProductPage implements OnInit, AfterViewInit{
       .addProduct(product)
       .then(() => {
         this.presentToast('Guardado con exito', 2000);
-        this.loading.dismiss();
         this.router.navigate(['/display-products']);
         console.log('Guardado exitoso');
       })
       .catch((error) => {
         console.log(error);
-        this.loading.dismiss();
       });
   }
 
@@ -152,12 +148,9 @@ export class NewProductPage implements OnInit, AfterViewInit{
         this.createProduct.setValue({
           name: data.payload.data()['name'],
           price: data.payload.data()['price'],
-          showCategory: data.payload.data()['category'],
-          category: data.payload.data(),
-          showColor: data.payload.data()['color'],
-          color: data.payload.data(),
-          showMaterial: data.payload.data()['material'],
-          material: data.payload.data(),
+          category: data.payload.data()['category'],
+          color: data.payload.data()['color'],
+          material: data.payload.data()['material'],
           stock: data.payload.data()['stock'],
           description: data.payload.data()['description'],
           uploadDate: new Date(),
