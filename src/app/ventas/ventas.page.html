@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card *ngFor="let venta of ventas">
+
+    <ion-img src="assets/slogo.png"></ion-img>
+    
+    <ion-fab vertical="top" horizontal="end">
+
+      <ion-fab-button color="light">
+        <ion-icon name="cog-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-list side="bottom">
+        <ion-fab-button color="danger" (click)="deleteVenta(venta.producto,venta.cantidad,venta.cajero,venta.comprador,venta.subtotal,venta.descuento,venta.total)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+
+    </ion-fab>
+
+    <ion-item>
+      <ion-card-header>
+        <ion-card-title>{{venta.producto}}</ion-card-title>
+        <ion-card-subtitle>{{venta.cantidad}}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-item>
+    
+    <ion-item>
+      <ion-card-content>
+        Cajero: {{venta.cajero}} <br>
+        Comprador: {{venta.comprador}} <br>
+        Subtotal: {{venta.subtotal}} <br>
+        Descuento: {{venta.descuento}}%
+        <p class="total">${{venta.total}}</p>
+      </ion-card-content>
+    </ion-item>
+  
+  </ion-card>
+</ion-content>

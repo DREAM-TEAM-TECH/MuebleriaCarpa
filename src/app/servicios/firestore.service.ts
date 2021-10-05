@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore,
   AngularFirestoreDocument,
   AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { stringify } from 'querystring';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +49,27 @@ export class FirestoreService {
   getCollection<tipo>(path: string) {
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
+  }
+
+  //Reactive Forms ADDVENTA
+  agregarVenta(venta: any): Promise<any>{
+    return this.database.collection('Ventas').add(venta);
+  }
+
+  getProductData(name: string): Observable<any>{
+    return this.database.collection("Productos", ref => ref.where("name", '==', name)).valueChanges();
+  }
+
+  //DISPLAY VENTAS
+
+  deleteVenta(producto: string, cantidad: number , cajero: string, comprador: string, subtotal: number, descuento: number, total: number): Observable<any>{
+    return this.database.collection("Ventas", ref => ref.where("producto", "==", producto)
+    .where("cantidad", "==", cantidad)
+    .where("cajero", "==", cajero)
+    .where("comprador", "==", comprador)
+    .where("subtotal", "==", subtotal)
+    .where("descuento", "==", descuento)
+    .where("total", "==", total)
+    ).snapshotChanges()
   }
 }

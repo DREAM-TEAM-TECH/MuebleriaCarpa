@@ -25,8 +25,47 @@ export interface Product {
     uploadDate: Date;
 }
 
+export interface pData {
+    id: string;
+    name: string;
+    price: number;
+    category: string;
+    color: string;
+    material: string;
+    stock: number;
+    description: string; 
+    uploadDate: Date;
+}
+
 export interface Category {
     id: string;
     nameCategory: string;
     descCategory: string;
+}
+
+export interface Venta {
+    producto: string;
+    cantidad: number;
+    cajero: string;
+    comprador: string;
+    subtotal: number;
+    descuento: number;
+    total: number;
+}
+
+export interface Empleado {
+    id: string,
+    nombre: string,
+    apellido: string,
+    email: string,
+    sexo: string,
+    fecha_nacimiento: string,
+    id_categoria_empleado: string,
+    id_estados: string,
+    id_Municipios: string,
+    id_colonia: string,
+    calle: string,
+    codigo_postal: string,
+    numero_exterior: string,
+    telefono: string
 }

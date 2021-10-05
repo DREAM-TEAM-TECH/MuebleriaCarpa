@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Venta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]='sellForm'>
+
+    <ion-item>
+      <ion-label position="floating">Producto</ion-label>
+        <ion-select placeholder="Ingresar producto" formControlName="producto" (ionChange)="onChange($event)">
+          <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-select placeholder="Seleccionar cantidad" formControlName="cantidad" (ionChange)="onCanChange($event)">
+        <ion-select-option *ngFor= "let cantidad of cantidadList">{{cantidad}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Cajero</ion-label>
+        <ion-select placeholder="Seleccionar cajero" formControlName="cajero">
+          <ion-select-option *ngFor= "let empleado of Empleados">{{empleado.nombre}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Comprador</ion-label>
+      <ion-input type="text" formControlName="comprador"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label slot="start">Precio del producto(c/u)</ion-label>
+      <ion-input slot="end" type="number" formControlName="subtotal" *ngFor="let data of pData" disabled>{{data.price}}</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descuento(%)</ion-label>
+      <ion-select placeholder="Seleccionar descuento" formControlName="descuento" (ionChange)="onDChange($event)">
+        <ion-select-option *ngFor= "let descuento of descuentoList">{{descuento}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label slot="start">Total</ion-label>
+      <ion-input slot="end" type="number" formControlName="total" disabled>{{total}}</ion-input>
+    </ion-item>
+
+    <ion-button [routerLink]="['/ventas']" class="ion-padding ion-text-center" color="primary" expand="full" type="submit" (click)="onSubmit()">Guardar</ion-button>
+
+  </form>
+
+</ion-content>
