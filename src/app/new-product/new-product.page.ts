@@ -2,6 +2,7 @@ import { AfterContentChecked, AfterViewInit, Component, DoCheck, Input, OnChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { Category, Color, Material } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
 
 @Component({
@@ -17,6 +18,14 @@ export class NewProductPage implements OnInit, AfterViewInit{
   guardado = 'Guardar';
   loading: any;
 
+  categories: Category[] = [];
+  materials: Material[] = [];
+  colors: Color[] = [];
+
+  private pathCategory = '/Categoria';
+  private pathMaterial = '/Material';
+  private pathColor = '/Color';
+
   constructor(
     public firestoreService: FirestoreService,
     public loadingController: LoadingController,
@@ -29,8 +38,11 @@ export class NewProductPage implements OnInit, AfterViewInit{
     this.createProduct = this.fb.group({
       name: ['', Validators.required],
       price: [null, Validators.required],
+      showCategory: [''],
       category: ['', Validators.required],
+      showColor: [''],
       color: ['', Validators.required],
+      showMaterial: [''],
       material: ['', Validators.required],
       stock: [null, Validators.required],
       description: ['', Validators.required],
@@ -43,9 +55,11 @@ export class NewProductPage implements OnInit, AfterViewInit{
 
   ngAfterViewInit(): void {
     this.editProduct();
+    this.foreignKeysInit();
   }
 
   ngOnInit(): void {
+    this.foreignKeysInit();
   }
 
   clear() {
@@ -53,6 +67,18 @@ export class NewProductPage implements OnInit, AfterViewInit{
     this.router.navigate(['/display-products'])
     this.ngAfterViewInit();
     console.log('Saliendo')
+  }
+
+  foreignKeysInit() {
+    this.firestoreService.getCollection<Category>(this.pathCategory).subscribe(res => {
+      this.categories = res;
+    }) 
+    this.firestoreService.getCollection<Material>(this.pathMaterial).subscribe(res => {
+      this.materials = res;
+    })
+    this.firestoreService.getCollection<Color>(this.pathColor).subscribe(res => {
+      this.colors = res;
+    })
   }
 
   saveProduct() {
@@ -126,9 +152,12 @@ export class NewProductPage implements OnInit, AfterViewInit{
         this.createProduct.setValue({
           name: data.payload.data()['name'],
           price: data.payload.data()['price'],
-          category: data.payload.data()['category'],
-          color: data.payload.data()['color'],
-          material: data.payload.data()['material'],
+          showCategory: data.payload.data()['category'],
+          category: data.payload.data(),
+          showColor: data.payload.data()['color'],
+          color: data.payload.data(),
+          showMaterial: data.payload.data()['material'],
+          material: data.payload.data(),
           stock: data.payload.data()['stock'],
           description: data.payload.data()['description'],
           uploadDate: new Date(),
