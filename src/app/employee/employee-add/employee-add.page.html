@@ -23,56 +23,58 @@
           </ion-card-header>
           <ion-card-content>
             <span *ngIf="submitted && createEmpleado.invalid" class="badge badge-danger"></span>
-            <form [formGroup]="createEmpleado">
+            
               <ion-list >
-                <ion-item >
-                  <ion-label position="stacked">Nombre</ion-label>
-                  <ion-input type="text" formControlName= "nombre" ></ion-input>
-                </ion-item>
-                <ion-item >
-                  <ion-label position="stacked">Apellido</ion-label>
-                  <ion-input type="text" formControlName= "apellido" ></ion-input>
-                </ion-item>
-                <ion-item >
-                  <ion-label position="stacked">Email</ion-label>
-                  <ion-input type="email" formControlName= "email" ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">Sexo</ion-label>
-                  <ion-select formControlName= "sexo" >
-                    <ion-select-option value = "m">Masculino</ion-select-option>
-                    <ion-select-option value = "f">Femenino</ion-select-option>
-                  </ion-select>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label position="stacked">Fecha de nacimiento</ion-label>
-                  <ion-datetime  placeholder="Seleccione la fecha" displayFormat = "DD/MMMM/YYYY" formControlName= "fechaDeNacimiento"></ion-datetime>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">Categoría</ion-label>
-                  <ion-select formControlName= "categoria" >
-                    <ion-select-option value = "almacen">Almacén</ion-select-option>
-                    <ion-select-option value = "recepcion">Recepción</ion-select-option>
-                    <ion-select-option value = "gerencia">Gerencia</ion-select-option>
-                    <ion-select-option value = "ventas">Ventas</ion-select-option>
-                    <ion-select-option value = "soporte">Soporte</ion-select-option>
-                    <ion-select-option value = "contaduria">Contaduría</ion-select-option>
-                  </ion-select>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked" >Estado</ion-label>
-                  <ion-select formControlName= "estado" (ionChange) = "onChangeEstado($event)">
-                    <ion-select-option *ngFor="let estado of Estados"   [value] = "estado.nombre">{{estado.nombre}}</ion-select-option>
-                  </ion-select>
-                </ion-item>
-                <form [formGroup]="municipioForm">
+                <form [formGroup]="empleadoForm1">
+                  <ion-item >
+                    <ion-label position="stacked">Nombre</ion-label>
+                    <ion-input type="text" formControlName= "nombre" ></ion-input>
+                  </ion-item>
+                  <ion-item >
+                    <ion-label position="stacked">Apellido</ion-label>
+                    <ion-input type="text" formControlName= "apellido" ></ion-input>
+                  </ion-item>
+                  <ion-item >
+                    <ion-label position="stacked">Email</ion-label>
+                    <ion-input type="email" formControlName= "email" ></ion-input>
+                  </ion-item>
                   <ion-item>
-                    <ion-label position="stacked">Municipio</ion-label>
-                    <ion-select formControlName= "municipio"  (ionChange) = "onChangeMunicipio($event)">
-                      <ion-select-option *ngFor="let municipio of Municipios" [value] = "municipio.nombre" >{{municipio.nombre}}</ion-select-option>
+                    <ion-label position="stacked">Sexo</ion-label>
+                    <ion-select formControlName= "sexo" >
+                      <ion-select-option value = "m">Masculino</ion-select-option>
+                      <ion-select-option value = "f">Femenino</ion-select-option>
                     </ion-select>
                   </ion-item>
+
+                  <ion-item>
+                    <ion-label position="stacked">Fecha de nacimiento</ion-label>
+                    <ion-datetime  placeholder="Seleccione la fecha" displayFormat = "DD/MMMM/YYYY" formControlName= "fechaDeNacimiento"></ion-datetime>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="stacked">Categoría</ion-label>
+                    <ion-select formControlName= "categoria" >
+                      <ion-select-option value = "almacen">Almacén</ion-select-option>
+                      <ion-select-option value = "recepcion">Recepción</ion-select-option>
+                      <ion-select-option value = "gerencia">Gerencia</ion-select-option>
+                      <ion-select-option value = "ventas">Ventas</ion-select-option>
+                      <ion-select-option value = "soporte">Soporte</ion-select-option>
+                      <ion-select-option value = "contaduria">Contaduría</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="stacked" >Estado</ion-label>
+                    <ion-select formControlName= "estado" (ionChange) = "onChangeEstado($event)">
+                      <ion-select-option *ngFor="let estado of Estados"   [value] = "estado.nombre">{{estado.nombre}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </form>
+                <form [formGroup]="municipioForm">
+                    <ion-item>
+                      <ion-label position="stacked">Municipio</ion-label>
+                      <ion-select formControlName= "municipio"  (ionChange) = "onChangeMunicipio($event)">
+                        <ion-select-option *ngFor="let municipio of Municipios" [value] = "municipio.nombre" >{{municipio.nombre}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
                 </form>
                 <form [formGroup]="coloniaForm">
                   <ion-item>
@@ -82,25 +84,27 @@
                     </ion-select>
                   </ion-item>
                 </form>
-                <ion-item>
-                  <ion-label position="stacked">Calle</ion-label>
-                  <ion-input  type="text" formControlName= "calle" ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">Código postal</ion-label>
-                  <ion-input  type="number" formControlName= "codigo_postal" ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">Número exterior</ion-label>
-                  <ion-input  type="number" formControlName= "num_exterior" ></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label position="stacked">Teléfono</ion-label>
-                  <ion-input  type="number" formControlName= "telefono" ></ion-input>
-                </ion-item>
-                
+
+                <form [formGroup]="empleadoForm2">
+                  <ion-item>
+                    <ion-label position="stacked">Calle</ion-label>
+                    <ion-input  type="text" formControlName= "calle" ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="stacked">Código postal</ion-label>
+                    <ion-input  type="number" formControlName= "codigo_postal" ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="stacked">Número exterior</ion-label>
+                    <ion-input  type="number" formControlName= "num_exterior" ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="stacked">Teléfono</ion-label>
+                    <ion-input  type="number" formControlName= "telefono" minlength = '3' maxlength="10"></ion-input>
+                  </ion-item>
+                </form>
               </ion-list>
-            </form>
+            
 
           </ion-card-content>
         </ion-card>

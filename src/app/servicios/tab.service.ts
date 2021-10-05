@@ -7,12 +7,10 @@ providedIn: 'root',
 })
 export class TabsService {
 hideTabBarPages = [
-'login',
-'new-product',
-'employee-detail',
-'employee-add',
-'employee-edit',
-':employeeId'
+    'login',
+    'new-product',
+    'menu',
+    'employee-add'
 ];
 routeParamPages: string[] = [
 'tabs1',
