@@ -47,6 +47,3 @@ export interface Empleado{
     numero_exterior: string,
     telefono: string
 }
-export interface Estado{
-    nombre: string
-}
