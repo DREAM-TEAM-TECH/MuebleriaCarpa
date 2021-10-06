@@ -26,8 +26,8 @@ export class LoginPage implements OnInit, AfterViewInit
 
   ngOnInit()
   {
-    console.log('toy en login')
     this.menu.enable(false)
+    this.router.navigate(['login'])
   } 
 
   ngAfterViewInit()

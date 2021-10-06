@@ -10,6 +10,8 @@ hideTabBarPages = [
 'login',
 'new-product',
 'registrarse',
+'addproveedor',
+'editproveedor/:id'
 ];
 
 routeParamPages: string[] = [

@@ -3,13 +3,13 @@
     top: -50%;
     left: -50%;
     width: 200%;
-    height: 200%;
+    height: 30%;
+    margin-bottom: -800;
 }
 
 video {
-    position: absolute;
+    position: fixed;
     top: 0;
-    bottom: 0;
     right: 0;
     left: 0;
     margin: auto;
@@ -23,6 +23,7 @@ video {
 
 ion-content{
     --ion-background-color:#ffffff;
+    background-size: 70px
 }
 
 #toplogo{

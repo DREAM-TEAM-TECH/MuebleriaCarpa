@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
   salir()
   {
     this.authService.logout();
-    this.router.navigate(['login'])
+    this.router.navigateByUrl('/login')
   }
 }
  
