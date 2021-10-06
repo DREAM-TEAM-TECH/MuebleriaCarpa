@@ -1,15 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
+import { url } from 'inspector';
 import { FirestoreService } from "../servicios/firestore.service";
+import { TabsService } from '../servicios/tab.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit 
+export class LoginPage implements OnInit, AfterViewInit 
 {
   createLogin: FormGroup;
 
@@ -22,8 +24,15 @@ export class LoginPage implements OnInit
     })
   }
 
-  ngOnInit(){
-  this.menu.enable(false)
+  ngOnInit()
+  {
+    console.log('toy en login')
+    this.menu.enable(false)
+  } 
+
+  ngAfterViewInit()
+  {
+    this.menu.enable(false)
   }
 
   async presentAlert(message: string) {
@@ -52,7 +61,7 @@ export class LoginPage implements OnInit
     console.log('Loading dismissed!');
   }
 
-  ingresar()
+  async ingresar()
   {
     if(this.createLogin.invalid)
     {
@@ -65,9 +74,17 @@ export class LoginPage implements OnInit
       username: this.createLogin.value.username,
       password: this.createLogin.value.password,
     }
-
     this.authService.login(data).then(res => {
-      this.router.navigate(['/menu'])
-    }).catch(err => this.presentAlert('Uno o mas campos estan vacíos'))
+      this.router.navigate(['/display-products'])
+      this.createLogin.reset();
+    }).catch(err => this.presentAlert('Email y/o contraseña incorrectos'))
   }
+
+  registro()
+  {
+    this.router.navigate(['/registrarse'])
+    this.createLogin.reset();
+    this.presentAlert('La contraseña debe tener mas de 6 caracteres y el email debe seguir el siguiente formato: (user@gmail.com)')
+  }
+
 }

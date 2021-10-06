@@ -9,7 +9,9 @@ export class TabsService {
 hideTabBarPages = [
 'login',
 'new-product',
+'registrarse',
 ];
+
 routeParamPages: string[] = [
 'tabs1',
 ];
@@ -18,6 +20,7 @@ this.platform.ready().then(() => {
 console.log('Core service init');
 this.navEvents();
 });
+console.log('toy en tab')
 }
 public hideTabs() {
 const tabBar = document.getElementById('myTabBar');
@@ -33,7 +36,7 @@ console.log(e);
 this.showHideTabs(e);
 });
 }
-private showHideTabs(e: any) {
+public showHideTabs(e: any) {
 const urlArray = e.url.split('/');
 const pageUrlParent = urlArray[urlArray.length - 2];
 const pageUrl = urlArray[urlArray.length - 1];

@@ -7,7 +7,7 @@
           <ion-note>{{email}}</ion-note>
 
           <ion-menu-toggle auto-hide="true">
-            <ion-item lines="none" [routerLink]="['']">
+            <ion-item lines="none" (click)="salir()">
               <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
               <ion-label>Cerrar Sesion</ion-label>
             </ion-item>

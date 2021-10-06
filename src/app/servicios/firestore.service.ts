@@ -9,17 +9,34 @@ import { AngularFirestore,
   providedIn: 'root'
 })
 export class FirestoreService {
+public isLogged: any = false;
 
+  constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) 
+  { 
+    AFauth.authState.subscribe(user => (this.isLogged = true))
+  }
 
-  constructor(private AFauth :  AngularFireAuth, public database: AngularFirestore) { }
-
-  login(data: any)
+  async login(user: any)
   {
     return new Promise((resolve, rejected) =>{
-      this.AFauth.signInWithEmailAndPassword(data.username, data.password).then(user => {
-        resolve(user)
+      this.AFauth.signInWithEmailAndPassword(user.username, user.password).then(res => {
+        resolve(res)
       }).catch(err => rejected(err));
     });
+  }
+
+  async onRegister(user: any)
+  {
+    return new Promise((resolve, rejected) =>{
+      this.AFauth.createUserWithEmailAndPassword(user.username, user.password).then(res => {
+        resolve(res)
+      }).catch(err => rejected(err));
+    });
+  }
+
+  logout()
+  {
+    return this.AFauth.signOut();
   }
 
   //Esto es con ReactiveForms

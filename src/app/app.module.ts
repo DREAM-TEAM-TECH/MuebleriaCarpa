@@ -15,6 +15,7 @@ import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { TabsService } from './servicios/tab.service';
+import { FirestoreService } from './servicios/firestore.service';
  
 @NgModule({
   declarations: [AppComponent],

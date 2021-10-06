@@ -30,7 +30,6 @@ export class AddproveedorPage implements OnInit, AfterViewInit {
     this.createProveedor = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
-      mostrarProducto: [''],
       producto: ['', Validators.required],
       estado: ['', Validators.required],
       municipio: ['', Validators.required],
@@ -168,8 +167,7 @@ export class AddproveedorPage implements OnInit, AfterViewInit {
         this.createProveedor.setValue({
           nombre: data.payload.data()['nombre'],
           apellido: data.payload.data()['apellido'],
-          mostrarProducto: data.payload.data()['producto'],
-          producto: data.payload.data(),
+          producto: data.payload.data()['producto'],
           estado: data.payload.data()['estado'],
           municipio: data.payload.data()['municipio'],
           colonia: data.payload.data()['colonia'],

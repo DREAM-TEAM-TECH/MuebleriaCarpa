@@ -28,7 +28,6 @@
 
       <ion-item>
         <ion-label position="floating">Producto</ion-label>
-        <ion-input disabled="true" type="text" formControlName="mostrarProducto" ></ion-input>
         <ion-select placeholder="Ingresar producto" formControlName="producto">
           <ion-select-option *ngFor= "let producto of Productos">{{producto.name}}</ion-select-option>
         </ion-select>
