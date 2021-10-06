@@ -7,7 +7,7 @@ import { Platform } from '@ionic/angular';
 })
 
 export class TabsService {
-  hideTabBarPages = ['login', 'new-product'];
+  hideTabBarPages = ['login', 'new-product', 'edit-product/:id'];
   routeParamPages: string[] = ['tabs1'];
   constructor(private router: Router, private platform: Platform) {
     this.platform.ready().then(() => {
