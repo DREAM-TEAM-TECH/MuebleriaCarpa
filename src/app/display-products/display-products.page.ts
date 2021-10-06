@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, MenuController, ToastController } from '@ionic/angular';
 import { FirestoreService } from '../servicios/firestore.service';
 
 @Component({
@@ -17,9 +17,11 @@ export class DisplayProductsPage implements OnInit {
     private router: Router,
     private alertController: AlertController, 
     public toastController: ToastController,
+    private menu: MenuController
   ) {}
 
   ngOnInit() {
+    this.menu.enable(true)
     this.getProduct();
   }
 

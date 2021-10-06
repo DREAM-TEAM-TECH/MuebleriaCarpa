@@ -95,6 +95,7 @@ export class NewProductPage implements OnInit, AfterViewInit{
       .addProduct(product)
       .then(() => {
         this.presentToast('Guardado con exito', 2000);
+        this.loading.dismiss();
         this.router.navigate(['/display-products']);
         console.log('Guardado exitoso');
       })
@@ -163,6 +164,7 @@ export class NewProductPage implements OnInit, AfterViewInit{
     this.loading = await this.loadingController.create({
       cssClass: 'normal',
       message: 'Guardando...',
+      duration: 1000
     });
     await this.loading.present();
   }
@@ -186,5 +188,7 @@ export class NewProductPage implements OnInit, AfterViewInit{
     });
 
     await alert.present();
+    const { role, data } = await this.loading.onDidDismiss();
+    console.log('Loading dismissed!');
   } 
 }
