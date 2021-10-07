@@ -3,51 +3,59 @@
     <div class="btn_flex">
       <div>
         <ion-buttons slot="start">
-          <ion-back-button defaultHref="/display-products" color="light"></ion-back-button>
+          <ion-back-button
+            defaultHref="/display-products"
+            color="light" (click)="clear()"
+          ></ion-back-button>
         </ion-buttons>
       </div>
     </div>
-    <ion-label class="subject">Nuevo Producto</ion-label>
+    <ion-label class="subject">{{titulo}}</ion-label>
   </div>
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center">
+  <span *ngIf="submitted && createProduct.invalid"></span>
+  <form [formGroup]="createProduct" (ngSubmit)="updateNewProduct()">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input [(ngModel)]="newProduct.name" required></ion-input>
+      <ion-input type="text" formControlName="name" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Precio</ion-label>
-      <ion-input [(ngModel)]="newProduct.price" type="number" required></ion-input>
+      <ion-input formControlName="price" type="number" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Categoria</ion-label>
-      <ion-select placeholder="Categoria" [(ngModel)]="newProduct.category" required>
-        <ion-select-option value="cocina">Cocina</ion-select-option>
-        <ion-select-option value="recamara">Recamara</ion-select-option>
+      <ion-select placeholder="Categoria" formControlName="category" required>
+        <ion-select-option *ngFor="let category of categories" >{{category.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Material</ion-label>
-      <ion-select placeholder="Material" [(ngModel)]="newProduct.material" required>
-        <ion-select-option value="roble">Roble</ion-select-option>
-        <ion-select-option value="nogal">Nogal</ion-select-option>
+      <ion-select placeholder="Material" formControlName="material" required>
+        <ion-select-option *ngFor="let material of materials" >{{material.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Color</ion-label>
-      <ion-select placeholder="Color" [(ngModel)]="newProduct.color" required>
-        <ion-select-option value="negro">Negro</ion-select-option>
-        <ion-select-option value="gris">Gris</ion-select-option>
+      <ion-select placeholder="Color" formControlName="color" required>
+        <ion-select-option *ngFor="let color of colors">{{color.color}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Existencia</ion-label>
-      <ion-input [(ngModel)]="newProduct.stock" type="number" required></ion-input>
+      <ion-input formControlName="stock" type="number" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input [(ngModel)]="newProduct.description" required></ion-input>
+      <ion-textarea placeholder="Descripcion" type="text" formControlName="description" required></ion-textarea>
     </ion-item>
-      <ion-button [routerLink]="['/display-products']" class="ion-padding ion-text-center" color="primary" expand="full" type="submit" (click)="addProduct()">Guardar</ion-button>
+    <ion-button
+      routerLink="/display-products"
+      class="ion-padding ion-text-center"
+      color="success"
+      expand="full"
+      type="submit"
+      >{{guardado}}</ion-button>
+  </form>
 </ion-content>

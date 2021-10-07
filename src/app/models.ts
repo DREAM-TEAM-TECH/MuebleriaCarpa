@@ -1,5 +1,6 @@
 export interface Proveedor
 {
+    id: string; 
     nombre: string;
     apellido: string;
     producto: string;
@@ -25,36 +26,26 @@ export interface Product {
     uploadDate: Date;
 }
 
-export interface pData {
-    id: string;
-    name: string;
-    price: number;
-    category: string;
-    color: string;
-    material: string;
-    stock: number;
-    description: string; 
-    uploadDate: Date;
-}
-
 export interface Category {
     id: string;
-    nameCategory: string;
-    descCategory: string;
+    name: string;
+    description: string;
 }
 
-export interface Venta {
-    producto: string;
-    cantidad: number;
-    cajero: string;
-    comprador: string;
-    subtotal: number;
-    descuento: number;
-    total: number;
+export interface Color {
+    id: string;
+    color: string;
 }
 
-export interface Empleado {
-    id: string,
+export interface Material {
+    id: string;
+    name: string;
+    description: string;
+}
+
+
+export interface Empleado{
+    
     nombre: string,
     apellido: string,
     email: string,
@@ -68,4 +59,26 @@ export interface Empleado {
     codigo_postal: string,
     numero_exterior: string,
     telefono: string
+}
+
+export interface pData {
+    id: string;
+    name: string;
+    price: number;
+    category: string;
+    color: string;
+    material: string;
+    stock: number;
+    description: string; 
+    uploadDate: Date;
+}
+
+export interface Venta {
+    producto: string;
+    cantidad: number;
+    cajero: string;
+    comprador: string;
+    subtotal: number;
+    descuento: number;
+    total: number;
 }

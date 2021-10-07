@@ -1,0 +1,46 @@
+.video_contain {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 30%;
+    margin-bottom: -800;
+}
+
+video {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    min-height: 50%;
+    min-width: 50%;
+}
+
+.elements{
+    position: relative;
+}
+
+ion-content{
+    --ion-background-color:#ffffff;
+    background-size: 70px
+}
+
+#toplogo{
+    width: 40%;
+    margin-top:25px;
+    margin-bottom: 25px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+ion-buttosn{
+    margin: 30px;
+    height: 100px;
+    --background: #000000;
+    font-size: 30px;
+}
+
+ion-icon{
+    font-size: 70px;
+}
