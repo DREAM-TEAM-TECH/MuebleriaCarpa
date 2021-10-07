@@ -11,25 +11,25 @@ const routes: Routes = [
     path: 'employee',
     children:[{
         path:'',
-        loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
+        loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule), canActivate: [AuthGuard]
       },
       {
         path: ':employeeId',
-        loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
+        loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule), canActivate: [AuthGuard]
       }
     ]
   },
   {
     path: 'employee-add',
-    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'employee-edit/:employeeId',
-    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'new-product',
