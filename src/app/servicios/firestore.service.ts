@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs'
-import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -89,4 +89,23 @@ public isLogged: any = false;
     return collection.valueChanges();
   }
 
+  setProduct(id: string): Observable<any> {
+    return this.database.collection('Productos').doc(id).snapshotChanges();
+  }
+
+  getProduct(): Observable<any> {
+    return this.database.collection('Productos', ref => ref.orderBy('category')).snapshotChanges();
+  }
+
+  addProduct(product: any): Promise<any>{
+    return this.database.collection('Productos').add(product);
+  }
+
+  updateProduct(id: string, data: any): Promise<any>{
+    return this.database.collection('Productos').doc(id).update(data);
+  }
+
+  deleteProduct(id: string): Promise<any> {
+    return this.database.collection('Productos').doc(id).delete();
+  }
 }

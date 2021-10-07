@@ -9,57 +9,61 @@ const routes: Routes = [
   },
   {
     path: 'employee',
-    loadChildren: () => import('./employee/employee.module').then( m => m.EmployeePageModule)
+    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
   },
   {
     path: 'employee-add',
     loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
   },
   {
-    path:'employee-detail',
+    path: 'employee-detail',
     children: [
       {
-        path:'',
+        path: '',
         loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
       },
       {
-        path:':employeeId',
+        path: ':employeeId',
         loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
       }
     ],
-    
-  }, 
+
+  },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'new-product',
-    loadChildren: () => import('./new-product/new-product.module').then( m => m.NewProductPageModule), 
+    loadChildren: () => import('./new-product/new-product.module').then(m => m.NewProductPageModule), canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-product/:id',
+    loadChildren: () => import('./new-product/new-product.module').then(m => m.NewProductPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'display-products',
-    loadChildren: () => import('./display-products/display-products.module').then( m => m.DisplayProductsPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./display-products/display-products.module').then(m => m.DisplayProductsPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'proveedores',
-    loadChildren: () => import('./proveedores/proveedores.module').then( m => m.ProveedoresPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./proveedores/proveedores.module').then(m => m.ProveedoresPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'addproveedor',
-    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then( m => m.AddproveedorPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then(m => m.AddproveedorPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'editproveedor/:id',
-    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then( m => m.AddproveedorPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then(m => m.AddproveedorPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'detallesproveedores/:id',
-    loadChildren: () => import('./proveedores/detallesproveedores/detallesproveedores.module').then( m => m.DetallesproveedoresPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./proveedores/detallesproveedores/detallesproveedores.module').then(m => m.DetallesproveedoresPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'registrarse',
-    loadChildren: () => import('./registrarse/registrarse.module').then( m => m.RegistrarsePageModule)
+    loadChildren: () => import('./registrarse/registrarse.module').then(m => m.RegistrarsePageModule)
   },
 
 ];
@@ -70,4 +74,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

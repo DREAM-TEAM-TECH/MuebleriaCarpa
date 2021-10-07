@@ -28,6 +28,17 @@ export interface Product {
 
 export interface Category {
     id: string;
-    nameCategory: string;
-    descCategory: string;
+    name: string;
+    description: string;
+}
+
+export interface Color {
+    id: string;
+    color: string;
+}
+
+export interface Material {
+    id: string;
+    name: string;
+    description: string;
 }

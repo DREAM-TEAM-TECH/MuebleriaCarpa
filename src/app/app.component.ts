@@ -6,26 +6,19 @@ import { FirestoreService } from './servicios/firestore.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   email: string; 
 
   public appPages = [
-    { title: 'Productos', url: '/display-products', icon: 'add-circle' },
-    { title: 'Proveedores', url: '/proveedores', icon: 'accessibility-outline' },
+    { title: 'Productos', url: '/display-products', icon: 'storefront' },
+    { title: 'Proveedores', url: '/proveedores', icon: 'accessibility' },
+    { title: 'Empleados', url: '/employee', icon: 'person' },
+    { title: 'Ventas', url: '/ventas', icon: 'cash' },
   ];
-  constructor(private authService: FirestoreService, private router: Router) 
-  {
-  }
-
-  ngOnInit() 
-  {
-
-  }
-
+  constructor(private authService: FirestoreService, private router: Router) {}
   salir()
   {
     this.authService.logout();
     this.router.navigateByUrl('/login')
   }
 }
- 
