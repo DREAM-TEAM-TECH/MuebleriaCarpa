@@ -24,7 +24,6 @@ export class VentasPage implements OnInit {
   }
 
   ngOnInit() {
-    this.menu.enable(false);
     this.getVenta();
   }
 

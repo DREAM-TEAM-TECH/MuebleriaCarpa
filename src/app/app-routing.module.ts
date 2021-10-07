@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'new-product',
@@ -46,10 +46,6 @@ const routes: Routes = [
   {
     path: 'proveedores',
     loadChildren: () => import('./proveedores/proveedores.module').then(m => m.ProveedoresPageModule), canActivate: [AuthGuard]
-  },
-  {
-    path: 'addproveedor',
-    loadChildren: () => import('./proveedores/addproveedor/addproveedor.module').then( m => m.AddproveedorPageModule)
   },
   {
     path: 'ventas',
