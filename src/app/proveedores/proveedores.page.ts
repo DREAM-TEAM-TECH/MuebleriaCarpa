@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proveedor } from '../models';
 import { FirestoreService } from '../servicios/firestore.service';
 import { Router} from '@angular/router';
-import { LoadingController, MenuController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { element } from 'protractor';
 
 @Component({
@@ -33,7 +33,9 @@ export class ProveedoresPage implements OnInit {
     empresa: null,
   };
 
-  constructor(public db: FirestoreService, private router: Router, private menu: MenuController, private exampleService: FirestoreService, private loadingCtrl: LoadingController) { }
+  constructor(public db: FirestoreService, private router: Router, private menu: MenuController, 
+    private exampleService: FirestoreService, private loadingCtrl: LoadingController, private alertController: AlertController, 
+    public toastController: ToastController) { }
 
   ngOnInit() 
   {
@@ -69,14 +71,49 @@ export class ProveedoresPage implements OnInit {
 
   add(){this.router.navigate(['/addproveedor'])}
 
-  eliminarProveedor(id: string)
+  async eliminarProveedor(id: string)
   {
-    this.presentLoading('Eliminando...');
-    this.db.eliminarProvedor(id).then(() => {
-      console.log('Proveedor eliminado')
-    }).catch(error => {
-      console.log(error)
-    })
+    const alert = await this.alertController.create({
+      cssClass: 'normal',
+      header: 'Advertencia',
+      message: '¿Seguro desea <strong>eliminar</strong> el proveedor?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'normal',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          },
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.db.eliminarProvedor(id)
+              .then(() => {
+                this.presentToast('Eliminado con exito', 2000);
+                console.log('Proveedor eliminado');
+              })
+              .catch((error) => {
+                this.presentToast('Eliminado fallido', 2000);
+                console.log(error);
+              });
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentToast(msg: string, timing: number) {
+    const toast = await this.toastController.create({
+      message: msg,
+      cssClass: 'normal',
+      duration: timing,
+    });
+    toast.present();
   }
 
 }

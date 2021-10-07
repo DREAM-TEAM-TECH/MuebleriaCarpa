@@ -14,7 +14,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 
-import { FirestoreService } from './servicios/firestore.service';
  
 @NgModule({
   declarations: [AppComponent],
