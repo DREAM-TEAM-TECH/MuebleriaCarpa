@@ -17,29 +17,5 @@
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
-    
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" #myTabBar id="myTabBar">
-        <ion-tab-button tab="new-product" [routerLink]="['new-product']">
-          <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>Nuevo Producto</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="speakers">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Speakers</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="map">
-          <ion-icon name="map"></ion-icon>
-          <ion-label>Map</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="about">
-          <ion-icon name="information-circle"></ion-icon>
-          <ion-label>About</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
   </ion-split-pane>
 </ion-app>

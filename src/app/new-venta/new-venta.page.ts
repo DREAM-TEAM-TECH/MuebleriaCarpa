@@ -143,6 +143,7 @@ export class NewVentaPage implements OnInit {
       console.log("valid");
       this.presentLoading();
       this.addSell();
+      this.router.navigate(['/addproveedor'])
     }else{
       console.log("Not valid");
       this.presentAlert();
