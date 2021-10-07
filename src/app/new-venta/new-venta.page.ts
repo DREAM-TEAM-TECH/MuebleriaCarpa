@@ -90,7 +90,6 @@ export class NewVentaPage implements OnInit {
 
     this.db.agregarVenta(venta).then(() =>{
       console.log('Venta registrada!');
-      this.router.navigate(['/ventas'])
     }).catch(error => {
       console.log(error);
     })
@@ -143,7 +142,7 @@ export class NewVentaPage implements OnInit {
       console.log("valid");
       this.presentLoading();
       this.addSell();
-      this.router.navigate(['/addproveedor'])
+      this.router.navigate(['/ventas'])
     }else{
       console.log("Not valid");
       this.presentAlert();
