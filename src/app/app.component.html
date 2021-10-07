@@ -1,45 +1,30 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Muebleria Carpa</ion-list-header>
-          <ion-note>{{email}}</ion-note>
-
-          <ion-menu-toggle auto-hide="true">
-            <ion-item lines="none" [routerLink]="['']">
-              <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
-              <ion-label>Cerrar Sesion</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-    
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" #myTabBar id="myTabBar">
-        <ion-tab-button tab="display-products" [routerLink]="['display-products']">
-          <ion-icon name="storefront-outline"></ion-icon>
-          <ion-label>Productos</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="proveedores">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Provedorres</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="map">
-          <ion-icon name="map"></ion-icon>
-          <ion-label>Map</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="about">
-          <ion-icon name="information-circle"></ion-icon>
-          <ion-label>About</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-split-pane>
+  <ion-menu contentId="main-content">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="assets/slogo.png">
+        <ion-label>
+          <h2>Muebleria Carpa</h2>
+          <p>Gestión</p>
+        </ion-label>
+      </div>
+      <ion-list id="inbox-list" class="menu-items">
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+            routerLinkActive="selected">
+            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-outline'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+      <ion-list class="menu-items">
+        <ion-item lines="none" [routerLink]="['']">
+          <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
+          <ion-label>Cerrar Sesion</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

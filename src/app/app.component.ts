@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TabsService } from './servicios/tab.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,7 +6,11 @@ import { TabsService } from './servicios/tab.service';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Nuevo Producto', url: '/new-product', icon: 'add-circle' },
+    { title: 'Productos', url: '/display-products', icon: 'storefront' },
+    { title: 'Proveedores', url: '/proveedores', icon: 'accessibility' },
+    { title: 'Empleados', url: '/employee', icon: 'person' },
+    { title: 'Ventas', url: '/ventas', icon: 'cash' },
   ];
-  constructor(public tabs: TabsService) {}
+  constructor() {}
+  
 }
