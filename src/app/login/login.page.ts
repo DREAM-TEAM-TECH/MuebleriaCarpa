@@ -10,15 +10,6 @@ import { FirestoreService } from "../servicios/firestore.service";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-<<<<<<< HEAD
-export class LoginPage implements OnInit 
-{
-  email: string; 
-  password: string;
-
-  constructor(private router: Router, private menu: MenuController, private authService: FirestoreService) 
-  { 
-=======
 export class LoginPage implements OnInit, AfterViewInit {
   createLogin: FormGroup;
 
@@ -51,7 +42,6 @@ export class LoginPage implements OnInit, AfterViewInit {
 
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
->>>>>>> main
   }
 
   async presentLoading(message: string) {
