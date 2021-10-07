@@ -40,13 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./new-product/new-product.module').then(m => m.NewProductPageModule), canActivate: [AuthGuard]
   },
   {
-<<<<<<< HEAD
-=======
     path: 'display-products',
     loadChildren: () => import('./display-products/display-products.module').then(m => m.DisplayProductsPageModule), canActivate: [AuthGuard]
   },
   {
->>>>>>> main
     path: 'proveedores',
     loadChildren: () => import('./proveedores/proveedores.module').then(m => m.ProveedoresPageModule), canActivate: [AuthGuard]
   },

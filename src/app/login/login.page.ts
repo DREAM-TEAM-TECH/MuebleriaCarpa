@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { url } from 'inspector';
 import { FirestoreService } from "../servicios/firestore.service";
@@ -68,6 +69,7 @@ export class LoginPage implements OnInit, AfterViewInit {
       password: this.createLogin.value.password,
     }
     this.authService.login(data).then(res => {
+      this.mostrarNotificacion(data.username);
       this.router.navigate(['/display-products'])
       this.menu.enable(true)
       this.createLogin.reset();
@@ -80,4 +82,17 @@ export class LoginPage implements OnInit, AfterViewInit {
     this.presentAlert('La contraseña debe tener mas de 6 caracteres y el email debe seguir el siguiente formato: (user@gmail.com)')
   }
 
+  mostrarNotificacion(username: string)
+  {
+    let options: LocalNotificationSchema = {
+      id: 1, 
+      title: "Muebleria Carpa", 
+      body: "Bienvenido "+username, 
+      schedule: {at: new Date(new Date().getTime()+1000)}
+
+    }
+
+    LocalNotifications.schedule({notifications:[options]});
+  }
+  
 }

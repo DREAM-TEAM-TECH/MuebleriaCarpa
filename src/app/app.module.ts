@@ -13,10 +13,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-<<<<<<< HEAD
- 
-=======
->>>>>>> main
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
