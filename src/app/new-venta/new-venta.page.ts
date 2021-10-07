@@ -149,4 +149,11 @@ export class NewVentaPage implements OnInit {
       this.presentAlert();
     }
   }
+
+  clear() {
+    this.sellForm.reset();
+    this.router.navigate(['/ventas'])
+    console.log('Saliendo')
+  }
+
 }
