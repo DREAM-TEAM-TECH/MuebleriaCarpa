@@ -18,7 +18,7 @@ export class DisplayProductsPage implements OnInit {
    }
 
   ngOnInit() {
-    this.menu.enable(false);
+    this.menu.enable(true);
     this.getProduct();
   }
 

@@ -1,5 +1,6 @@
 export interface Proveedor
 {
+    id: string; 
     nombre: string;
     apellido: string;
     producto: string;

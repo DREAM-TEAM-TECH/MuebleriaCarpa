@@ -1,45 +1,27 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
+
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Muebleria Carpa</ion-list-header>
+        <ion-list>
+          <ion-list-header>Muebleria</ion-list-header>
           <ion-note>{{email}}</ion-note>
 
-          <ion-menu-toggle auto-hide="true">
-            <ion-item lines="none" [routerLink]="['']">
-              <ion-icon slot="start" ios="log-out-outline" md="log-out-outline"></ion-icon>
-              <ion-label>Cerrar Sesion</ion-label>
+          <ion-menu-toggle auto-hide="true" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
+
+        <ion-item (click)="salir()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label>Cerrar Sesion</ion-label>
+        </ion-item>
       </ion-content>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
-    
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" #myTabBar id="myTabBar">
-        <ion-tab-button tab="new-product" [routerLink]="['new-product']">
-          <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>Nuevo Producto</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="speakers">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Speakers</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="map">
-          <ion-icon name="map"></ion-icon>
-          <ion-label>Map</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="about">
-          <ion-icon name="information-circle"></ion-icon>
-          <ion-label>About</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
   </ion-split-pane>
 </ion-app>

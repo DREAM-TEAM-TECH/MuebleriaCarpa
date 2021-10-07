@@ -1,23 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login" (click)="ngAfterViewInit()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div class="video_contain">
-    <video autoplay loop src="assets/video/backgroundvideo.mp4"></video>
-  </div>
-
-  <div class="elements">
-    <ion-img id="toplogo" src="assets/img/slogo.png"></ion-img>
-  </div>
-
   <ion-card>
     <ion-card-content>
 
-        <form [formGroup]="createLogin">
+        <form [formGroup]="createUser">
           <ion-item>
             <ion-label position="floating">Email</ion-label>
             <ion-input type="text" formControlName= "username" ></ion-input>
@@ -29,12 +24,8 @@
           </ion-item>
         </form>
         <br>
-        <ion-button  expand="full" (click)="ingresar()" color="success">
-          Iniciar Sesion
-        </ion-button>
-        
-        <ion-button size="small" expand="full" (click)="registro()" [routerLink]="['/registrarse']" color="secondary">
-          Registrarse
+        <ion-button  expand="full" (click)="registrar()" color="success">
+          Registrar 
         </ion-button>
 
     </ion-card-content>
