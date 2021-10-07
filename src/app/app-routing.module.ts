@@ -9,25 +9,23 @@ const routes: Routes = [
   },
   {
     path: 'employee',
-    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
-  },
-  {
-    path: 'employee-add',
-    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
-  },
-  {
-    path: 'employee-detail',
-    children: [
-      {
-        path: '',
+    children:[{
+        path:'',
         loadChildren: () => import('./employee/employee.module').then(m => m.EmployeePageModule)
       },
       {
         path: ':employeeId',
         loadChildren: () => import('./employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule)
       }
-    ],
-
+    ]
+  },
+  {
+    path: 'employee-add',
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
+  },
+  {
+    path: 'employee-edit/:employeeId',
+    loadChildren: () => import('./employee/employee-add/employee-add.module').then(m => m.EmployeeAddPageModule)
   },
   {
     path: 'login',
