@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddproveedorPageRoutingModule } from './addproveedor-routing.module';
+import { VentasPageRoutingModule } from './ventas-routing.module';
 
-import { AddproveedorPage } from './addproveedor.page';
+import { VentasPage } from './ventas.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddproveedorPageRoutingModule,
+    VentasPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [AddproveedorPage]
+  declarations: [VentasPage]
 })
-export class AddproveedorPageModule {}
+export class VentasPageModule {}

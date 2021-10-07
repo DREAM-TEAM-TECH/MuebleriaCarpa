@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router} from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
+import { url } from 'inspector';
 import { FirestoreService } from "../servicios/firestore.service";
 
 @Component({
@@ -8,6 +10,7 @@ import { FirestoreService } from "../servicios/firestore.service";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+<<<<<<< HEAD
 export class LoginPage implements OnInit 
 {
   email: string; 
@@ -15,17 +18,76 @@ export class LoginPage implements OnInit
 
   constructor(private router: Router, private menu: MenuController, private authService: FirestoreService) 
   { 
+=======
+export class LoginPage implements OnInit, AfterViewInit {
+  createLogin: FormGroup;
+
+  constructor(private router: Router, private menu: MenuController, private authService: FirestoreService, private fb: FormBuilder,
+    private loadingCtrl: LoadingController, public alertController: AlertController) {
+    this.createLogin = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    })
   }
 
-  ngOnInit(){
-  this.menu.enable(false)
+  ngOnInit() {
+    this.menu.enable(false)
+    this.router.navigate(['login'])
   }
-  ingresar()
-  {
-    this.authService.login(this.email, this.password).then(res => {
+
+  ngAfterViewInit() {
+    this.menu.enable(false)
+  }
+
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+>>>>>>> main
+  }
+
+  async presentLoading(message: string) {
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'my-custom-class',
+      message,
+      duration: 1000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
+  async ingresar() {
+    if (this.createLogin.invalid) {
+      this.presentAlert('Uno o mas campos estan vacíos');
+      return;
+    }
+
+    const data: any =
+    {
+      username: this.createLogin.value.username,
+      password: this.createLogin.value.password,
+    }
+    this.authService.login(data).then(res => {
       this.router.navigate(['/display-products'])
-    }).catch(err => alert('Los datos son incorrectos'))
-    this.email = null;
-    this.password = null;
+      this.menu.enable(true)
+      this.createLogin.reset();
+    }).catch(err => this.presentAlert('Email y/o contraseña incorrectos'))
   }
+
+  registro() {
+    this.router.navigate(['/registrarse'])
+    this.createLogin.reset();
+    this.presentAlert('La contraseña debe tener mas de 6 caracteres y el email debe seguir el siguiente formato: (user@gmail.com)')
+  }
+
 }

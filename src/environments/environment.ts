@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
 };
 
 export const firebaseConfig = {
@@ -15,6 +15,8 @@ export const firebaseConfig = {
   appId: "1:1035603308487:web:5bf5e6ee20e481e349f3e2",
   measurementId: "G-DVDZL4CCCD"
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

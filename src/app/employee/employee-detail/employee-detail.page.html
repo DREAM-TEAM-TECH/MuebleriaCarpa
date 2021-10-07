@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref = "/employee"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Información del empleado</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{this.nombre}}</ion-card-title>
+            <ion-buttons slot = "end">
+              <ion-button color = "danger">
+                <ion-icon name = "trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+          </ion-card-header>
+          <ion-card-content>
+            <span *ngIf="submitted && createEmpleado.invalid" class="badge badge-danger"></span>
+            <form [formGroup]="createEmpleado">
+              <ion-list >
+                <ion-item >
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "nombre" ></ion-input>
+                </ion-item>
+                <ion-item >
+                  <ion-label position="floating">Apellido</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "apellido" ></ion-input>
+                </ion-item>
+                <ion-item >
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "email" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Sexo</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "sexo" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Fecha de nacimiento</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "fechaDeNacimiento" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Categoría</ion-label>
+                  <ion-input disabled="true" type="text" formControlName = "categoria" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Estado</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "estado" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Municipio</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "municipio" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Colonia</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "colonia" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Calle</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "calle" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Código postal</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "codigo_postal" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Número exterior</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "num_exterior" ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Teléfono</ion-label>
+                  <ion-input disabled="true" type="text" formControlName= "telefono" ></ion-input>
+                </ion-item>
+                
+              </ion-list>
+            </form>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

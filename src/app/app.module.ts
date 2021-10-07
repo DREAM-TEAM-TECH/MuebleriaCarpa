@@ -31,5 +31,6 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormBuilder,
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}
