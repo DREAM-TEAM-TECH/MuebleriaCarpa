@@ -1,22 +1,31 @@
 <ion-header>
   <ion-toolbar color = "dark">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref = "folder/inbox"></ion-back-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Empleados</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-searchbar></ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
 
   
   <ion-list> 
-    <ion-item *ngFor = "let empleado of empleados" [routerLink] = "['/employee',  empleado.id]">
-      <ion-label>{{empleado.nombre}} {{empleado.apellido}}</ion-label>
+    <ion-item-sliding *ngFor = "let emp of empleados" >
+    <ion-item [routerLink] = "['/employee',  emp.id]">
+      <ion-avatar slot = "start">
+        <ion-img src = "assets/img/usuario.png"></ion-img>
+      </ion-avatar>
+      <ion-label>{{emp.nombre}} {{emp.apellido}}</ion-label>
     </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option [routerLink]="['/employee-edit/', emp.id]" >Editar</ion-item-option>
+        <ion-item-option color="danger" (click)="eliminarEmpleado(emp.id)">Eliminar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   

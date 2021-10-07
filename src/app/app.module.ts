@@ -7,19 +7,33 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { firebaseConfig } from "../environments/environment";
+import { firebaseConfig } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormsModule } from '@angular/forms';
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+<<<<<<< HEAD
  
+=======
+>>>>>>> main
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AngularFirestoreModule, ReactiveFormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }, FormBuilder],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    FormBuilder,
+  ],
   bootstrap: [AppComponent],
   
 })

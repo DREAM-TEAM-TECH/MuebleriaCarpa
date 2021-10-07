@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs'
-import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { stringify } from 'querystring';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -84,9 +87,75 @@ public isLogged: any = false;
     return this.database.createId();
   }
 
-  getCollection<tipo>(path: string) {
+  getCollection<tipo>(path: string){
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
   }
 
+  //Reactive Forms ADDVENTA
+  agregarVenta(venta: any): Promise<any>{
+    return this.database.collection('Ventas').add(venta);
+  }
+
+  getProductData(name: string): Observable<any>{
+    return this.database.collection("Productos", ref => ref.where("name", '==', name)).valueChanges();
+  }
+
+  //DISPLAY VENTAS
+
+  deleteVenta(producto: string, cantidad: number , cajero: string, comprador: string, subtotal: number, descuento: number, total: number): Observable<any>{
+    return this.database.collection("Ventas", ref => ref.where("producto", "==", producto)
+    .where("cantidad", "==", cantidad)
+    .where("cajero", "==", cajero)
+    .where("comprador", "==", comprador)
+    .where("subtotal", "==", subtotal)
+    .where("descuento", "==", descuento)
+    .where("total", "==", total)
+    ).snapshotChanges()
+  }
+  setProduct(id: string): Observable<any> {
+    return this.database.collection('Productos').doc(id).snapshotChanges();
+  }
+
+  getProduct(): Observable<any> {
+    return this.database.collection('Productos', ref => ref.orderBy('category')).snapshotChanges();
+  }
+
+  addProduct(product: any): Promise<any>{
+    return this.database.collection('Productos').add(product);
+  }
+
+  updateProduct(id: string, data: any): Promise<any>{
+    return this.database.collection('Productos').doc(id).update(data);
+  }
+
+  deleteProduct(id: string): Promise<any> {
+    return this.database.collection('Productos').doc(id).delete();
+  }
+
+  getEmpleados(): Observable<any> {
+    return this.database.collection('Empleados').snapshotChanges();
+  }
+
+  getEmpleado(id: string): Observable<any>{
+    return this.database.collection('Empleados').doc(id).snapshotChanges();
+  }
+
+  eliminarEmpleado(id: string): Promise<any>{
+    return this.database.collection('Empleados').doc(id).delete();
+  }
+
+  agregarEmpleado(Empleado: any): Promise<any>{
+    return this.database.collection('Empleados').add(Empleado);
+  }
+
+  actualizarEmpleado(id: string, data: any): Promise<any>{
+    return this.database.collection('Empleados').doc(id).update(data);
+  }
+  // getEstados(): Observable<any> {
+  //   return this.database.collection('Estados').snapshotChanges()
+  // }
+  // getMunicipios(doc): Observable<any> {
+  //   return this.database.collection('Estados').doc(doc).collection('Municipios').snapshotChanges()
+  // }
 }
