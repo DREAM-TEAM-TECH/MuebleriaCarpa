@@ -18,6 +18,7 @@ public isLogged: any = false;
 
   async login(user: any)
   {
+    
     return new Promise((resolve, rejected) =>{
       this.AFauth.signInWithEmailAndPassword(user.username, user.password).then(res => {
         resolve(res)

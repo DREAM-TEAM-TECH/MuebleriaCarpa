@@ -14,14 +14,13 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 
-import { TabsService } from './servicios/tab.service';
 import { FirestoreService } from './servicios/firestore.service';
  
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AngularFirestoreModule, ReactiveFormsModule],
-  providers: [TabsService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }, FormBuilder],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }, FormBuilder],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

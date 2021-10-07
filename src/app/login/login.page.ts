@@ -4,7 +4,6 @@ import { Router} from '@angular/router';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { url } from 'inspector';
 import { FirestoreService } from "../servicios/firestore.service";
-import { TabsService } from '../servicios/tab.service';
 
 @Component({
   selector: 'app-login',
@@ -76,6 +75,7 @@ export class LoginPage implements OnInit, AfterViewInit
     }
     this.authService.login(data).then(res => {
       this.router.navigate(['/display-products'])
+      this.menu.enable(true)
       this.createLogin.reset();
     }).catch(err => this.presentAlert('Email y/o contraseña incorrectos'))
   }
