@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Haptics } from '@capacitor/haptics';
 import { MenuController } from '@ionic/angular';
 import { Observable, pipe } from 'rxjs';
 import { Empleado, Product, Venta } from '../models';
@@ -35,5 +36,6 @@ export class VentasPage implements OnInit {
 
   deleteVenta(producto: string, cantidad: number , cajero: string, comprador: string, subtotal: number, descuento: number, total: number) {
     this.firestoreService.deleteVenta(producto,cantidad,cajero,comprador,subtotal,descuento,total).subscribe(data => {this.ventaId = data[0].payload.doc.id; this.firestoreService.deleteDoc(this.path, this.ventaId)});
+    Haptics.vibrate();
   }
 }
