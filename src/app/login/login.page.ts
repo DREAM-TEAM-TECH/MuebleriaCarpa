@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LocalNotifications, LocalNotificationSchema} from '@capacitor/local-notifications';
+import { LocalNotifications, LocalNotificationSchema } from '@capacitor/local-notifications';
 import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { url } from 'inspector';
 import { FirestoreService } from "../servicios/firestore.service";
